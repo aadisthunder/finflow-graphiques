@@ -31,6 +31,7 @@ Because traditional commercial banks require collateral, tax returns (ITR), and 
 ## 🎥 Pitch Video & Pitch Deck
 
 - **🎬 Video Pitch (MP4):** [`FinFlow_Demo_Presentation.mp4`](FinFlow_Demo_Presentation.mp4) *(1080p, 2m 22s — strictly under hackathon 2:30 limit)*
+- **📖 Markdown Pitch Deck:** [`PITCH_DECK.md`](PITCH_DECK.md) *(Full 10-slide dossier with transcript & illustrations)*
 - **📑 Pitch Deck (PDF):** [`FinFlow_Pitch_Deck.pdf`](FinFlow_Pitch_Deck.pdf) *(10 Slides, 16:9 widescreen)*
 - **📊 Pitch Deck (PPTX):** [`FinFlow_Pitch_Deck.pptx`](FinFlow_Pitch_Deck.pptx) *(Native editable PowerPoint)*
 - **📝 Devpost Dossier:** [`DEVPOST_SUBMISSION.md`](DEVPOST_SUBMISSION.md) *(Full competition writeup & technical specs)*
