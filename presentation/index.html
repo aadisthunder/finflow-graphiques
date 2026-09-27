@@ -9,23 +9,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #070a12;
-      --bg-card: rgba(15, 23, 42, 0.75);
-      --bg-card-hover: rgba(30, 41, 59, 0.85);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(16, 185, 129, 0.35);
+      --bg-dark: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --border-subtle: #e2e8f0;
+      --border-glow: #059669;
       
-      --primary: #10b981; /* Emerald Green */
-      --primary-light: #34d399;
-      --accent-gold: #f59e0b; /* Amber Sunrise */
-      --accent-cyan: #06b6d4; /* Tech Cyan */
-      --accent-red: #ef4444; /* Crisis Red */
+      --primary: #059669; /* Emerald Green */
+      --primary-light: #10b981;
+      --accent-gold: #d97706; /* Amber Sunrise */
+      --accent-cyan: #0284c7; /* Tech Blue */
+      --accent-red: #dc2626; /* Warning Red */
       
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-main: #0f172a;
+      --text-muted: #334155;
       --text-dim: #64748b;
       
-      --shadow-glow: 0 0 35px rgba(16, 185, 129, 0.15);
+      --shadow-card: 0 4px 16px rgba(15, 23, 42, 0.05);
+      --shadow-hover: 0 12px 28px rgba(15, 23, 42, 0.08);
+      --shadow-spotlight: 0 0 0 3px rgba(5, 150, 105, 0.25), 0 16px 36px rgba(15, 23, 42, 0.12);
     }
 
     * {
@@ -55,7 +57,7 @@
       left: 0;
       right: 0;
       height: 64px;
-      background: rgba(7, 10, 18, 0.85);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
@@ -80,24 +82,22 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      color: #070a12;
+      color: #ffffff;
       font-size: 1.1rem;
     }
 
     .brand-title {
       font-size: 1.25rem;
       font-weight: 700;
-      background: linear-gradient(to right, #ffffff, #cbd5e1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-main);
     }
 
     .badge-challenge {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: var(--primary-light);
+      background: #ecfdf5;
+      border: 1.5px solid var(--primary-light);
+      color: #065f46;
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: 0.25rem 0.65rem;
       border-radius: 9999px;
       text-transform: uppercase;
@@ -113,12 +113,12 @@
     .slide-counter {
       font-size: 0.875rem;
       color: var(--text-muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .btn {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      border: 1.5px solid var(--border-subtle);
       color: var(--text-main);
       padding: 0.5rem 1rem;
       border-radius: 8px;
@@ -134,18 +134,18 @@
     .btn:hover {
       background: var(--bg-card-hover);
       border-color: var(--primary);
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.15);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), #059669);
+      background: linear-gradient(135deg, var(--primary), #047857);
       color: #ffffff;
       border: none;
     }
 
     .btn-primary:hover {
       background: linear-gradient(135deg, var(--primary-light), var(--primary));
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
     }
 
     /* Slides Container */
@@ -159,7 +159,7 @@
     .slide {
       display: none;
       min-height: calc(100vh - 64px);
-      padding: 3rem 4rem;
+      padding: 3rem 4.5rem;
       opacity: 0;
       transform: translateY(12px);
       transition: opacity 0.35s ease, transform 0.35s ease;
@@ -178,7 +178,7 @@
       color: var(--primary);
       text-transform: uppercase;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.1em;
       margin-bottom: 0.5rem;
       display: flex;
@@ -191,15 +191,15 @@
       font-weight: 800;
       line-height: 1.15;
       margin-bottom: 1rem;
-      color: #ffffff;
+      color: var(--text-main);
     }
 
     .slide-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       color: var(--text-muted);
       line-height: 1.5;
-      max-width: 900px;
-      margin-bottom: 2.5rem;
+      max-width: 950px;
+      margin-bottom: 2.25rem;
     }
 
     .grid-2 {
@@ -222,151 +222,113 @@
 
     .card {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
       padding: 1.75rem;
-      backdrop-filter: blur(16px);
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-card);
       transition: all 0.3s ease;
     }
 
     .card:hover {
-      border-color: rgba(255, 255, 255, 0.18);
-      transform: translateY(-4px);
+      border-color: #cbd5e1;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
     }
 
     .card-glow-green {
-      border-color: rgba(16, 185, 129, 0.3);
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.08);
+      border-color: #a7f3d0;
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.08);
     }
 
     .card-glow-amber {
-      border-color: rgba(245, 158, 11, 0.3);
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
+      border-color: #fde68a;
+      box-shadow: 0 4px 16px rgba(217, 119, 6, 0.08);
     }
 
     .card-glow-cyan {
-      border-color: rgba(6, 182, 212, 0.3);
-      box-shadow: 0 0 25px rgba(6, 182, 212, 0.08);
+      border-color: #bae6fd;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
     }
 
     .card-glow-red {
-      border-color: rgba(239, 68, 68, 0.3);
-      box-shadow: 0 0 25px rgba(239, 68, 68, 0.08);
+      border-color: #fecaca;
+      box-shadow: 0 4px 16px rgba(220, 38, 38, 0.08);
     }
 
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
       font-family: 'Outfit', sans-serif;
-      margin-bottom: 0.25rem;
     }
 
     .stat-label {
-      font-size: 0.875rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
-      font-weight: 500;
-      line-height: 1.4;
+      font-weight: 600;
+      line-height: 1.35;
     }
 
     /* Comparison Table */
     .comparison-table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       margin-top: 1rem;
-    }
-
-    .comparison-table th, .comparison-table td {
-      padding: 1rem 1.25rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border-subtle);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: var(--shadow-card);
     }
 
     .comparison-table th {
-      color: var(--text-dim);
-      font-size: 0.85rem;
-      text-transform: uppercase;
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-size: 0.9rem;
       font-weight: 700;
+      text-transform: uppercase;
       letter-spacing: 0.05em;
+      border-bottom: 1.5px solid var(--border-subtle);
+      color: var(--text-main);
     }
 
     .comparison-table td {
+      padding: 1rem 1.25rem;
       font-size: 0.95rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
     }
 
-    .highlight-cell {
-      background: rgba(16, 185, 129, 0.1);
-      color: #ffffff;
-      font-weight: 600;
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table .highlight-cell {
+      background: #ecfdf5;
+      color: #065f46;
+      font-weight: 700;
       border-left: 2px solid var(--primary);
     }
 
-    /* Audio Player Widget */
-    .audio-widget {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      margin-top: 1.5rem;
-    }
-
-    .audio-wave {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      height: 16px;
-    }
-
-    .audio-bar {
-      width: 3px;
-      background: var(--primary);
-      border-radius: 2px;
-      animation: wave 1.2s infinite ease-in-out;
-    }
-
-    .audio-bar:nth-child(2) { animation-delay: 0.2s; }
-    .audio-bar:nth-child(3) { animation-delay: 0.4s; }
-    .audio-bar:nth-child(4) { animation-delay: 0.1s; }
-
-    @keyframes wave {
-      0%, 100% { height: 4px; }
-      50% { height: 16px; }
-    }
-
-    /* Interactive Simulator */
+    /* Interactive Simulator / Container */
     .simulator-container {
-      background: #0b1120;
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
       padding: 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-    }
-
-    /* Motion Graphic & Cinematic Image Enhancements */
-    @keyframes kenburns {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.07); }
-      100% { transform: scale(1); }
-    }
-
-    .kenburns-img {
-      animation: kenburns 14s infinite alternate ease-in-out;
-      transform-origin: center center;
+      box-shadow: var(--shadow-card);
     }
 
     .card-cinematic {
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card-cinematic:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
     }
 
     .timeline-item {
@@ -394,17 +356,18 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      border: 1.5px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
     }
 
     .timeline-icon.active {
-      background: rgba(16, 185, 129, 0.2);
+      background: #ecfdf5;
       border-color: var(--primary);
       color: var(--primary);
     }
@@ -415,8 +378,8 @@
     }
 
     body.spotlight-active .is-dimmed {
-      opacity: 0.28 !important;
-      filter: brightness(0.6) grayscale(35%) !important;
+      opacity: 0.22 !important;
+      filter: grayscale(85%) blur(0.5px) !important;
       transform: scale(0.98) !important;
     }
 
@@ -425,7 +388,7 @@
       filter: none !important;
       transform: translateY(-4px) scale(1.025) !important;
       border-color: var(--primary) !important;
-      box-shadow: 0 0 35px rgba(16, 185, 129, 0.55), 0 12px 28px rgba(0, 0, 0, 0.6) !important;
+      box-shadow: var(--shadow-spotlight) !important;
       z-index: 10;
     }
 
@@ -435,9 +398,9 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(7, 10, 18, 0.94);
-      border: 1px solid rgba(16, 185, 129, 0.45);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(16, 185, 129, 0.2);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1.5px solid var(--primary);
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12);
       backdrop-filter: blur(16px);
       padding: 0.65rem 1.6rem;
       border-radius: 9999px;
@@ -447,18 +410,12 @@
       gap: 0.85rem;
       z-index: 9999;
       pointer-events: none;
-      animation: fadeInSub 0.3s ease;
-    }
-
-    @keyframes fadeInSub {
-      from { opacity: 0; transform: translate(-50%, 8px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
     }
 
     .subtitle-badge {
-      background: rgba(16, 185, 129, 0.2);
+      background: #ecfdf5;
       border: 1px solid var(--primary);
-      color: var(--primary-light);
+      color: #065f46;
       font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -466,15 +423,12 @@
       border-radius: 20px;
       letter-spacing: 0.05em;
       white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
     }
 
     .subtitle-text {
       font-size: 1.05rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
       line-height: 1.4;
       text-align: center;
     }
@@ -495,10 +449,10 @@
       padding: 3.5rem 5rem !important;
     }
 
-    /* Print Styles for Perfect 16:9 Landscape PDF Export */
     @media print {
       body {
-        background: #070a12 !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
@@ -531,7 +485,7 @@
   <header class="deck-header">
     <div class="brand">
       <div class="brand-logo">₹</div>
-      <div class="brand-title">FinFlow <span style="font-weight: 400; color: var(--text-dim); font-size: 1rem;">(VyaparSetu)</span></div>
+      <div class="brand-title">FinFlow <span style="font-weight: 500; color: var(--text-dim); font-size: 1rem;">(VyaparSetu)</span></div>
       <span class="badge-challenge">Graphiques Innovation Challenge</span>
     </div>
 
@@ -539,11 +493,9 @@
       <button class="btn btn-primary" id="btn-auto-demo" onclick="startAutomatedDemo()">
         <span>🎬</span> Auto-Play Demo (2m 23s)
       </button>
-      <button class="btn" id="btn-audio-toggle" onclick="toggleAudioNarration()">
-        <span id="audio-icon">🔊</span> <span id="audio-text">Voiceover</span>
-      </button>
-      <button class="btn" onclick="window.print()">
-        <span>📄</span> PDF
+      <button class="btn" id="btn-narration" onclick="toggleAudioNarration()">
+        <span id="audio-icon">🔊</span>
+        <span id="audio-text">Narration</span>
       </button>
       <span class="slide-counter" id="slide-indicator">Slide 1 of 10</span>
       <button class="btn" onclick="prevSlide()">◀</button>
@@ -562,49 +514,58 @@
 
     <!-- Slide 1: Hero / Title -->
     <section class="slide active" id="slide-1">
-      <div style="display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(16, 185, 129, 0.12); border: 1.5px solid var(--primary); padding: 0.4rem 1.25rem; border-radius: 9999px; margin-bottom: 1.5rem; width: fit-content; box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);">
-        <span style="font-size: 1.15rem; color: var(--primary); font-weight: 800;">₹</span>
-        <span style="color: #ffffff; font-weight: 800; font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase;">
-          FinFlow (VyaparSetu)
-        </span>
-        <span style="height: 14px; width: 1px; background: rgba(255, 255, 255, 0.2); margin: 0 0.15rem;"></span>
-        <span style="color: var(--primary-light); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
-          Graphiques Innovation Challenge
-        </span>
-      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 2.5rem;">
+        <div style="flex: 1;">
+          <div style="display: inline-flex; align-items: center; gap: 0.75rem; background: #ecfdf5; border: 1.5px solid var(--primary); padding: 0.4rem 1.25rem; border-radius: 9999px; margin-bottom: 1.5rem; width: fit-content; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.15);">
+            <span style="font-size: 1.15rem; color: var(--primary); font-weight: 800;">₹</span>
+            <span style="color: #065f46; font-weight: 800; font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase;">
+              FinFlow (VyaparSetu)
+            </span>
+            <span style="height: 14px; width: 1.5px; background: #a7f3d0; margin: 0 0.15rem;"></span>
+            <span style="color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
+              Graphiques Innovation Challenge
+            </span>
+          </div>
 
-      <h1 class="slide-title" style="font-size: 3.8rem; max-width: 1100px; line-height: 1.12; margin-bottom: 1.25rem;">
-        <span style="background: linear-gradient(135deg, #ffffff 40%, var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-          FinFlow:
-        </span>
-        <span style="background: linear-gradient(135deg, var(--accent-gold), #fde047); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-          Algorithmic Daily Capital
-        </span>
-        <br>
-        <span style="font-size: 2.75rem; font-weight: 700; color: #f8fafc;">
-          & Parametric Climate Resilience
-        </span>
-      </h1>
-      <p class="slide-subtitle" style="font-size: 1.25rem; max-width: 950px; line-height: 1.55;">
-        Replacing 300%+ APR predatory debt for 40M unbanked street vendors in India with 4:30 AM algorithmic working capital, daily UPI micro-skimming, and autonomous climate protection.
-      </p>
+          <h1 class="slide-title" style="font-size: 3.5rem; max-width: 950px; line-height: 1.12; margin-bottom: 1.15rem;">
+            <span style="color: var(--primary);">FinFlow:</span>
+            <span style="color: var(--accent-gold);">Algorithmic Daily Capital</span>
+            <br>
+            <span style="font-size: 2.6rem; font-weight: 700; color: var(--text-main);">
+              & Parametric Climate Resilience
+            </span>
+          </h1>
+          <p class="slide-subtitle" style="font-size: 1.22rem; max-width: 900px; line-height: 1.55; margin-bottom: 2rem;">
+            Replacing 300%+ APR predatory debt for 40M unbanked street vendors in India with 4:30 AM algorithmic working capital, daily UPI micro-skimming, and autonomous climate protection.
+          </p>
 
-      <div class="grid-4" style="margin-top: 1.5rem;">
-        <div class="card card-glow-amber">
-          <div class="stat-number" style="color: var(--accent-gold);">40M+</div>
-          <div class="stat-label">Informal Micro-Vendors in India Driving Daily Commerce</div>
+          <div class="grid-4">
+            <div class="card card-glow-amber">
+              <div class="stat-number" style="color: var(--accent-gold);">40M+</div>
+              <div class="stat-label">Informal Micro-Vendors in India Driving Daily Commerce</div>
+            </div>
+            <div class="card card-glow-red">
+              <div class="stat-number" style="color: var(--accent-red);">>300%</div>
+              <div class="stat-label">Effective APR Charged by Informal Loan Sharks</div>
+            </div>
+            <div class="card card-glow-green">
+              <div class="stat-number" style="color: var(--primary);">₹20</div>
+              <div class="stat-label">Flat Daily Cycle Fee for FinFlow Sunrise Capital</div>
+            </div>
+            <div class="card card-glow-cyan">
+              <div class="stat-number" style="color: var(--accent-cyan);">&lt;60s</div>
+              <div class="stat-label">Parametric Weather Insurance Payout Without Paperwork</div>
+            </div>
+          </div>
         </div>
-        <div class="card card-glow-red">
-          <div class="stat-number" style="color: var(--accent-red);">>300%</div>
-          <div class="stat-label">Effective APR Charged by Informal Loan Sharks</div>
-        </div>
-        <div class="card card-glow-green">
-          <div class="stat-number" style="color: var(--primary);">₹20</div>
-          <div class="stat-label">Flat Daily Cycle Fee for FinFlow Sunrise Capital</div>
-        </div>
-        <div class="card card-glow-cyan">
-          <div class="stat-number" style="color: var(--accent-cyan);"><60s</div>
-          <div class="stat-label">Parametric Weather Insurance Payout Without Paperwork</div>
+
+        <!-- Right Side: Stickman Hero Visual -->
+        <div style="width: 380px; flex-shrink: 0; background: #ffffff; border: 2px solid var(--border-subtle); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-hover); text-align: center;">
+          <img src="images/stickman_soundbox_split.jpg" alt="FinFlow Stickman Doodle" style="width: 100%; height: 260px; object-fit: cover;">
+          <div style="padding: 1rem; background: #f8fafc; border-top: 1px solid var(--border-subtle);">
+            <div style="font-weight: 800; color: var(--primary); font-size: 1rem;">ZERO PREDATORY DEBT</div>
+            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem;">4:30 AM Advance • Daily UPI Micro-Skim</div>
+          </div>
         </div>
       </div>
     </section>
@@ -620,14 +581,14 @@
       <div class="grid-3">
         <!-- 1. Dawn Mandi -->
         <div class="card card-glow-amber card-cinematic" id="slide2-card1" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="position: relative; height: 190px; overflow: hidden;">
-            <img src="images/raju_dawn_mandi.jpg" alt="Raju at 4:30 AM Mandi" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover;">
-            <span style="position: absolute; top: 12px; left: 12px; background: rgba(11, 15, 23, 0.85); backdrop-filter: blur(8px); color: var(--accent-gold); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--accent-gold);">
+          <div style="position: relative; height: 210px; overflow: hidden; background: #ffffff;">
+            <img src="images/stickman_raju_mandi.jpg" alt="Raju at 4:30 AM Mandi" style="width: 100%; height: 100%; object-fit: contain;">
+            <span style="position: absolute; top: 12px; left: 12px; background: #fef3c7; color: #b45309; font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.75rem; border-radius: 20px; border: 1.5px solid #d97706;">
               🌅 4:30 AM WHOLESALE MANDI
             </span>
           </div>
           <div style="padding: 1.25rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.4rem;">Needs ₹3,000 Morning Capital</h3>
+            <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.4rem;">Needs ₹3,000 Morning Capital</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.45;">
               Wholesale mandis operate before dawn. Commercial banks open at 10 AM and take 7–14 days. Raju needs capital in 5 minutes.
             </p>
@@ -636,14 +597,14 @@
 
         <!-- 2. Predatory Loan Shark -->
         <div class="card card-glow-red card-cinematic" id="slide2-card2" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="position: relative; height: 190px; overflow: hidden;">
-            <img src="images/predatory_loan_shark.jpg" alt="Predatory Moneylender Loan Shark" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover;">
-            <span style="position: absolute; top: 12px; left: 12px; background: rgba(11, 15, 23, 0.85); backdrop-filter: blur(8px); color: var(--accent-red); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--accent-red);">
+          <div style="position: relative; height: 210px; overflow: hidden; background: #ffffff;">
+            <img src="images/stickman_loan_shark.jpg" alt="Predatory Moneylender Loan Shark" style="width: 100%; height: 100%; object-fit: contain;">
+            <span style="position: absolute; top: 12px; left: 12px; background: #fee2e2; color: #b91c1c; font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.75rem; border-radius: 20px; border: 1.5px solid #ef4444;">
               🩸 >300% APR PREDATORY DEBT
             </span>
           </div>
           <div style="padding: 1.25rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.4rem;">Charging Over 300% APR</h3>
+            <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.4rem;">Charging Over 300% APR</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.45;">
               Slow banking forces him into predatory lenders ("Meter Vaddi") charging 10%–20% monthly interest, trapping his family in debt.
             </p>
@@ -652,14 +613,14 @@
 
         <!-- 3. Climate Shock -->
         <div class="card card-glow-cyan card-cinematic" id="slide2-card3" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-          <div style="position: relative; height: 190px; overflow: hidden;">
-            <img src="images/monsoon_climate_shock.jpg" alt="Monsoon Climate Shock in Street Market" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover;">
-            <span style="position: absolute; top: 12px; left: 12px; background: rgba(11, 15, 23, 0.85); backdrop-filter: blur(8px); color: var(--accent-cyan); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--accent-cyan);">
+          <div style="position: relative; height: 210px; overflow: hidden; background: #ffffff;">
+            <img src="images/stickman_climate_shock.jpg" alt="Monsoon Climate Shock in Street Market" style="width: 100%; height: 100%; object-fit: contain;">
+            <span style="position: absolute; top: 12px; left: 12px; background: #e0f2fe; color: #0369a1; font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.75rem; border-radius: 20px; border: 1.5px solid #0284c7;">
               ⛈️ ZERO WEATHER RELIEF
             </span>
           </div>
           <div style="padding: 1.25rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.4rem;">Trapping Family in Debt</h3>
+            <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.4rem;">Trapping Family in Debt</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.45;">
               Monsoon floods and heatwaves rot perishable inventory. With zero relief from lenders, vendors face multi-year default traps.
             </p>
@@ -687,25 +648,25 @@
         </thead>
         <tbody>
           <tr id="slide3-row1">
-            <td style="font-weight: 600; color: #ffffff;">Underwriting Data</td>
+            <td style="font-weight: 700; color: var(--text-main);">Underwriting Data</td>
             <td style="color: var(--text-muted);">ITR, CIBIL, audited balance sheets</td>
             <td style="color: var(--text-muted);">Joint liability group peer pressure</td>
             <td class="highlight-cell">Velocity TrustScore (Daily UPI frequency & consistency)</td>
           </tr>
           <tr id="slide3-row2">
-            <td style="font-weight: 600; color: #ffffff;">Repayment Frequency</td>
+            <td style="font-weight: 700; color: var(--text-main);">Repayment Frequency</td>
             <td style="color: var(--text-muted);">Rigid monthly EMI</td>
             <td style="color: var(--text-muted);">Bi-weekly mandatory meetings</td>
             <td class="highlight-cell">Real-time reverse micro-skimming per daily QR payment</td>
           </tr>
           <tr id="slide3-row3">
-            <td style="font-weight: 600; color: #ffffff;">Disbursement Speed</td>
+            <td style="font-weight: 700; color: var(--text-main);">Disbursement Speed</td>
             <td style="color: var(--text-muted);">5 to 14 Business Days</td>
             <td style="color: var(--text-muted);">2 to 4 Weeks</td>
-            <td class="highlight-cell">Instant (<10 seconds at 4:30 AM via Voice/Soundbox)</td>
+            <td class="highlight-cell">Instant (&lt;10 seconds at 4:30 AM via Voice/Soundbox)</td>
           </tr>
           <tr id="slide3-row-bottom">
-            <td style="font-weight: 600; color: #ffffff;">Climate Shock Defense</td>
+            <td style="font-weight: 700; color: var(--text-main);">Climate Shock Defense</td>
             <td style="color: var(--text-muted);">None (Default penalty applied)</td>
             <td style="color: var(--text-muted);">None (Coercive collection agents)</td>
             <td class="highlight-cell">Autonomous Parametric Weather Moratorium & Relief</td>
@@ -725,18 +686,18 @@
       <div class="grid-2" id="slide4-pillars" style="margin-bottom: 1.5rem;">
         <div class="card card-glow-amber" style="padding: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff;">🌅 1. Sunrise Capital</h3>
-            <span style="color: var(--accent-gold); font-weight: 700; font-size: 0.75rem; background: rgba(245, 158, 11, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">4:30 AM DISBURSEMENT</span>
+            <h3 style="font-size: 1.15rem; color: var(--text-main);">🌅 1. Sunrise Capital</h3>
+            <span style="color: #b45309; font-weight: 800; font-size: 0.75rem; background: #fef3c7; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid #d97706;">4:30 AM DISBURSEMENT</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
-            Pre-dawn inventory advances (₹1,500–₹5,000) triggered via regional voice. Disbursed in <5s at a flat ₹20 fee (0.8% vs 15%+ predatory loan sharks).
+            Pre-dawn inventory advances (₹1,500–₹5,000) triggered via regional voice. Disbursed in &lt;5s at a flat ₹20 fee (0.8% vs 15%+ predatory loan sharks).
           </p>
         </div>
 
         <div class="card card-glow-green" style="padding: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff;">⚡ 2. Reverse Micro-Skimming</h3>
-            <span style="color: var(--primary); font-weight: 700; font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">AUTO DAILY SETTLEMENT</span>
+            <h3 style="font-size: 1.15rem; color: var(--text-main);">⚡ 2. Reverse Micro-Skimming</h3>
+            <span style="color: #065f46; font-weight: 800; font-size: 0.75rem; background: #ecfdf5; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--primary);">AUTO DAILY SETTLEMENT</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
             As retail customers scan Raju's QR, the engine algorithmically deducts 8%–10% per sale. Advance is 100% repaid by dusk with zero debt rollover.
@@ -745,8 +706,8 @@
 
         <div class="card card-glow-cyan" style="padding: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff;">🏺 3. Suraksha Goolak</h3>
-            <span style="color: var(--accent-cyan); font-weight: 700; font-size: 0.75rem; background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">6.5% HIGH-YIELD BUFFER</span>
+            <h3 style="font-size: 1.15rem; color: var(--text-main);">🏺 3. Suraksha Goolak</h3>
+            <span style="color: #0369a1; font-weight: 800; font-size: 0.75rem; background: #e0f2fe; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--accent-cyan);">6.5% HIGH-YIELD BUFFER</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
             Weekend and festival sales surpluses automatically route into an overnight liquid fund, building a family rainy-day reserve with 1-voice instant liquidity.
@@ -755,8 +716,8 @@
 
         <div class="card card-glow-green" style="padding: 1.25rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="font-size: 1.15rem; color: #ffffff;">🛡️ 4. Parametric Climate Shield</h3>
-            <span style="color: var(--primary-light); font-weight: 700; font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">AUTONOMOUS WEATHER RELIEF</span>
+            <h3 style="font-size: 1.15rem; color: var(--text-main);">🛡️ 4. Parametric Climate Shield</h3>
+            <span style="color: #065f46; font-weight: 800; font-size: 0.75rem; background: #ecfdf5; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--primary-light);">AUTONOMOUS WEATHER RELIEF</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
             Radar alerts (>35mm/hr rain or >43°C heat) auto-freeze daily repayments and disburse ₹600 emergency relief for spoiled inventory with zero paperwork.
@@ -765,19 +726,19 @@
       </div>
 
       <!-- Live Flow Demonstration Widget: How a ₹200 UPI Scan Actually Splits -->
-      <div id="slide4-telemetry" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-glow); border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow-glow);">
+      <div id="slide4-telemetry" style="background: #ffffff; border: 1.5px solid var(--primary); border-radius: 16px; padding: 1.25rem; box-shadow: var(--shadow-card);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <span style="font-size: 1.25rem;">📱</span>
-            <span style="font-weight: 700; color: #ffffff; font-size: 0.95rem;">Live Real-Time Telemetry: Single ₹200 UPI QR Customer Payment</span>
+            <span style="font-weight: 800; color: var(--text-main); font-size: 0.95rem;">Live Real-Time Telemetry: Single ₹200 UPI QR Customer Payment</span>
           </div>
-          <span style="background: rgba(16, 185, 129, 0.2); color: var(--primary-light); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid var(--primary);">
+          <span style="background: #ecfdf5; color: #065f46; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid var(--primary);">
             NPCI Webhook: 142ms Latency
           </span>
         </div>
 
         <!-- Split Distribution Bar -->
-        <div style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.05);">
+        <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin-bottom: 1rem; background: #e2e8f0;">
           <div style="width: 90%; background: linear-gradient(90deg, #10b981, #059669); transition: width 0.5s ease;" title="90% Vendor Working Cash"></div>
           <div style="width: 9%; background: linear-gradient(90deg, #f59e0b, #d97706); transition: width 0.5s ease;" title="9% Sunrise Advance Repayment"></div>
           <div style="width: 1%; background: linear-gradient(90deg, #06b6d4, #0284c7); transition: width 0.5s ease;" title="1% Suraksha Goolak Savings"></div>
@@ -785,30 +746,30 @@
 
         <!-- Metric Cards of the Split -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 1rem; align-items: center;">
-          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 0.75rem;">
-            <div style="font-size: 0.75rem; color: var(--text-muted);">Vendor Spendable Cash</div>
+          <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 12px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Vendor Spendable Cash</div>
             <div style="font-size: 1.35rem; font-weight: 800; color: var(--primary); margin-top: 0.2rem;">₹180.00</div>
-            <div style="font-size: 0.7rem; color: var(--primary-light);">90% • Instant Wallet Credit</div>
+            <div style="font-size: 0.72rem; color: #047857; font-weight: 700;">90% • Instant Wallet Credit</div>
           </div>
 
-          <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 0.75rem;">
-            <div style="font-size: 0.75rem; color: var(--text-muted);">Micro-Advance Paydown</div>
+          <div style="background: #fef3c7; border: 1.5px solid #fde68a; border-radius: 12px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Micro-Advance Paydown</div>
             <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-gold); margin-top: 0.2rem;">₹18.00</div>
-            <div style="font-size: 0.7rem; color: var(--accent-gold);">9% • Balance: ₹2,982 remaining</div>
+            <div style="font-size: 0.72rem; color: #b45309; font-weight: 700;">9% • Balance: ₹2,982 remaining</div>
           </div>
 
-          <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 8px; padding: 0.75rem;">
-            <div style="font-size: 0.75rem; color: var(--text-muted);">Suraksha Goolak Savings</div>
+          <div style="background: #e0f2fe; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Suraksha Goolak Savings</div>
             <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-cyan); margin-top: 0.2rem;">₹2.00</div>
-            <div style="font-size: 0.7rem; color: var(--accent-cyan);">1% • 6.5% Liquid Yield</div>
+            <div style="font-size: 0.72rem; color: #0369a1; font-weight: 700;">1% • 6.5% Liquid Yield</div>
           </div>
 
-          <div style="background: rgba(30, 41, 59, 0.6); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+          <div style="background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 12px; padding: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
             <div style="font-size: 1.5rem;">🛡️</div>
             <div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Climate Shield Oracle</div>
-              <div style="font-size: 0.72rem; color: var(--primary-light);">IMD Radar: Rain 4mm/hr (Normal)</div>
-              <div style="font-size: 0.68rem; color: var(--text-muted);">Auto-pause armed at >35mm/hr</div>
+              <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-main);">Climate Shield Oracle</div>
+              <div style="font-size: 0.72rem; color: var(--primary); font-weight: 700;">IMD Radar: Rain 4mm/hr (Normal)</div>
+              <div style="font-size: 0.68rem; color: var(--text-dim);">Auto-pause armed at &gt;35mm/hr</div>
             </div>
           </div>
         </div>
@@ -828,7 +789,7 @@
           <div class="timeline-item">
             <div class="timeline-icon active">🌅</div>
             <div>
-              <h4 style="color: #ffffff; font-size: 1.1rem;">4:30 AM • Wholesale Mandi</h4>
+              <h4 style="color: var(--text-main); font-size: 1.1rem; font-weight: 700;">4:30 AM • Wholesale Mandi</h4>
               <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
                 Soundbox announces: <em>"Namaste Raju bhai, ₹3,000 Sunrise loan taiyaar hai."</em> Raju speaks <em>"Haan"</em>. ₹3,000 arrives in 5 seconds. He buys fresh apples.
               </p>
@@ -838,7 +799,7 @@
           <div class="timeline-item">
             <div class="timeline-icon active">🛒</div>
             <div>
-              <h4 style="color: #ffffff; font-size: 1.1rem;">11:30 AM • Retail Sales</h4>
+              <h4 style="color: var(--text-main); font-size: 1.1rem; font-weight: 700;">11:30 AM • Retail Sales</h4>
               <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
                 Customer buys 2kg fruit for ₹200 via UPI. Soundbox chirps: <em>"₹200 prapt hue. ₹18 loan chukta, ₹2 Goolak mein jama!"</em> Raju keeps ₹180 immediately.
               </p>
@@ -848,7 +809,7 @@
           <div class="timeline-item">
             <div class="timeline-icon active">⛈️</div>
             <div>
-              <h4 style="color: #ffffff; font-size: 1.1rem;">2:00 PM • Monsoon Downpour</h4>
+              <h4 style="color: var(--text-main); font-size: 1.1rem; font-weight: 700;">2:00 PM • Monsoon Downpour</h4>
               <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
                 45mm rain hits the market. FinFlow Weather Oracle auto-triggers: repayments pause, zero penalty, ₹600 compensation credited to protect from spoiled fruit.
               </p>
@@ -858,7 +819,7 @@
           <div class="timeline-item">
             <div class="timeline-icon active">🌙</div>
             <div>
-              <h4 style="color: #ffffff; font-size: 1.1rem;">8:30 PM • Zero-Debt Evening</h4>
+              <h4 style="color: var(--text-main); font-size: 1.1rem; font-weight: 700;">8:30 PM • Zero-Debt Evening</h4>
               <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
                 Total sales ₹3,800. ₹3,000 advance + ₹20 fee 100% cleared. ₹114 saved in Goolak. TrustScore increases +6 points. Raju sleeps peaceful with no loan shark debt.
               </p>
@@ -866,37 +827,37 @@
           </div>
         </div>
 
-          <div id="slide5-soundbox" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem;">
-                <span style="font-weight: 700; color: #ffffff;">Soundbox Live Status</span>
-                <span style="color: var(--primary); font-size: 0.85rem; font-weight: 600;">● Online 4G</span>
-              </div>
-
-              <div style="margin-top: 1rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-subtle);">
-                <img src="images/finflow_soundbox_terminal.jpg" alt="FinFlow Soundbox Terminal" style="width: 100%; height: 160px; object-fit: cover;">
-              </div>
-
-              <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                <div style="background: rgba(255, 255, 255, 0.03); padding: 0.75rem; border-radius: 8px;">
-                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Sunrise Advance</div>
-                  <div style="font-size: 1.25rem; font-weight: 800; color: #ffffff;">₹3,000</div>
-                  <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">100% Repaid</div>
-                </div>
-
-                <div style="background: rgba(255, 255, 255, 0.03); padding: 0.75rem; border-radius: 8px;">
-                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Suraksha Goolak</div>
-                  <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-cyan);">₹4,820</div>
-                  <div style="font-size: 0.75rem; color: var(--text-muted);">+6.5% Yield</div>
-                </div>
-              </div>
+        <div id="slide5-soundbox" style="background: #ffffff; border: 1.5px solid var(--border-subtle); border-radius: 16px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-card);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem;">
+              <span style="font-weight: 800; color: var(--text-main);">Soundbox Live Status</span>
+              <span style="color: var(--primary); font-size: 0.85rem; font-weight: 700; background: #ecfdf5; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--primary-light);">● Online 4G</span>
             </div>
 
-            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 0.75rem; margin-top: 1rem;">
-              <div style="font-weight: 700; color: var(--primary-light); font-size: 0.85rem;">Voice Command Active</div>
-              <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Listening in Hindi, Tamil, Telugu, Marathi & Bengali</div>
+            <div style="margin-top: 1rem; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--border-subtle); background: #ffffff;">
+              <img src="images/stickman_soundbox_split.jpg" alt="FinFlow Soundbox Terminal Stickman" style="width: 100%; height: 175px; object-fit: contain;">
+            </div>
+
+            <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div style="background: #ecfdf5; padding: 0.75rem; border-radius: 10px; border: 1px solid #a7f3d0;">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Sunrise Advance</div>
+                <div style="font-size: 1.35rem; font-weight: 800; color: var(--primary);">₹3,000</div>
+                <div style="font-size: 0.75rem; color: #065f46; font-weight: 700;">100% Repaid</div>
+              </div>
+
+              <div style="background: #e0f2fe; padding: 0.75rem; border-radius: 10px; border: 1px solid #bae6fd;">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Suraksha Goolak</div>
+                <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-cyan);">₹4,820</div>
+                <div style="font-size: 0.75rem; color: #0369a1; font-weight: 700;">+6.5% Yield</div>
+              </div>
             </div>
           </div>
+
+          <div style="background: #f8fafc; border: 1.5px solid var(--border-subtle); border-radius: 10px; padding: 0.75rem; margin-top: 1rem;">
+            <div style="font-weight: 800; color: var(--primary); font-size: 0.85rem;">Voice Command Active</div>
+            <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Listening in Hindi, Tamil, Telugu, Marathi & Bengali</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -908,28 +869,69 @@
         Built to institutional standards: Open Credit Enablement Network (OCEN 4.0), UPI Auto-Split, and Decentralized Weather Telemetry.
       </p>
 
-      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: stretch;">
-        <div id="slide6-portal" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-glow);">
-          <img src="images/finflow_bank_dashboard.jpg" alt="FinFlow Institutional Portal & OCEN 4.0 Gateway" style="width: 100%; height: 100%; object-fit: cover;">
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 1.5rem; align-items: stretch;">
+        <!-- Left: Clean Architecture Schema Container -->
+        <div id="slide6-portal" style="border-radius: 16px; overflow: hidden; border: 1.5px solid var(--border-subtle); box-shadow: var(--shadow-card); background: #ffffff; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem; margin-bottom: 1.25rem;">
+              <span style="font-weight: 800; color: var(--text-main); font-size: 1.1rem;">FinFlow Protocol Architecture</span>
+              <span style="background: #ecfdf5; color: #065f46; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--primary-light);">DPI Stack</span>
+            </div>
+
+            <!-- Visual Flow Schema -->
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-weight: 800; color: var(--text-main); font-size: 0.95rem;">1. Edge Soundbox & UPI QR</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">4:30 AM Voice Loan Request & Customer Inbound Payments</div>
+                </div>
+                <span style="font-size: 1.2rem;">🎙️</span>
+              </div>
+
+              <div style="text-align: center; color: var(--primary); font-weight: 800; font-size: 1.1rem;">↓</div>
+
+              <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 12px; padding: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-weight: 800; color: var(--primary); font-size: 0.95rem;">2. NPCI & OCEN 4.0 Switch</div>
+                  <div style="font-size: 0.78rem; color: #065f46;">Sub-250ms settlement webhooks & automated credit routing</div>
+                </div>
+                <span style="font-size: 1.2rem;">⚡</span>
+              </div>
+
+              <div style="text-align: center; color: var(--primary); font-weight: 800; font-size: 1.1rem;">↓</div>
+
+              <div style="background: #e0f2fe; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-weight: 800; color: var(--accent-cyan); font-size: 0.95rem;">3. Small Finance Bank Vault</div>
+                  <div style="font-size: 0.78rem; color: #0369a1;">Institutional balance sheet with 0.8% low-risk default rate</div>
+                </div>
+                <span style="font-size: 1.2rem;">🏦</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+            Compliant with Reserve Bank of India (RBI) Digital Lending Guidelines
+          </div>
         </div>
 
         <div id="slide6-right" style="display: flex; flex-direction: column; gap: 1rem;">
           <div class="card card-glow-cyan" id="slide6-webhook" style="padding: 1.2rem;">
-            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.35rem;">⚡ Real-Time Webhook Engine</h3>
+            <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.35rem;">⚡ Real-Time Webhook Engine</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
               Sub-250ms asynchronous webhook pipeline listening to NPCI UPI settlement notifications. Performs instantaneous multi-split routing between vendor spendable balance, NBFC loan vault, and Goolak.
             </p>
           </div>
 
           <div class="card card-glow-green" id="slide6-trustscore" style="padding: 1.2rem;">
-            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.35rem;">🧠 Velocity TrustScore ML</h3>
+            <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.35rem;">🧠 Velocity TrustScore ML</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
               Dynamic ML risk model evaluating 90-day transaction regularity, mandi geo-location stamps, ticket size distribution, and peer guarantor rings—eliminating the need for CIBIL/collateral.
             </p>
           </div>
 
           <div class="card card-glow-amber" id="slide6-oracle" style="padding: 1.2rem;">
-            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.35rem;">📡 Parametric Weather Oracle</h3>
+            <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.35rem;">📡 Parametric Weather Oracle</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
               Direct telemetry integration with Open-Meteo & IMD radar. Evaluates rainfall intensity (mm/hr) and heat index across 1km² municipal polygons to trigger automated moratoriums and claim payouts.
             </p>
@@ -960,18 +962,18 @@
           <div class="stat-label">Lifetime Value (LTV) to CAC Ratio</div>
         </div>
         <div class="card card-glow-green" id="slide7-default">
-          <div class="stat-number" style="color: var(--primary-light);"><0.8%</div>
+          <div class="stat-number" style="color: var(--primary-light);">&lt;0.8%</div>
           <div class="stat-label">NPL Default Rate via Micro-Skimming</div>
         </div>
       </div>
 
-      <div class="card" id="slide7-breakdown" style="background: rgba(15, 23, 42, 0.5);">
-        <h4 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 0.75rem;">Daily Asset-Light Economics (Per ₹3,000 Daily Advance Cycle)</h4>
+      <div class="card" id="slide7-breakdown" style="background: #f8fafc; border: 1.5px solid var(--border-subtle);">
+        <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.75rem;">Daily Asset-Light Economics (Per ₹3,000 Daily Advance Cycle)</h4>
         <div class="grid-4" style="font-size: 0.95rem;">
-          <div><span style="color: var(--text-dim);">Gross Daily Fee:</span> <br><strong style="color: #ffffff;">₹20.00 Flat</strong></div>
-          <div><span style="color: var(--text-dim);">Cost of Capital (NBFC):</span> <br><strong style="color: var(--accent-red);">-₹0.83 (10% p.a.)</strong></div>
-          <div><span style="color: var(--text-dim);">UPI & Cloud Webhook:</span> <br><strong style="color: var(--accent-red);">-₹0.60</strong></div>
-          <div><span style="color: var(--text-dim);">Net Margin per Cycle:</span> <br><strong style="color: var(--primary); font-size: 1.2rem;">₹18.57 (92.8%)</strong></div>
+          <div><span style="color: var(--text-dim); font-weight: 600;">Gross Daily Fee:</span> <br><strong style="color: var(--text-main); font-size: 1.15rem;">₹20.00 Flat</strong></div>
+          <div><span style="color: var(--text-dim); font-weight: 600;">Cost of Capital (SFB):</span> <br><strong style="color: var(--accent-red); font-size: 1.15rem;">-₹0.83 (10% p.a.)</strong></div>
+          <div><span style="color: var(--text-dim); font-weight: 600;">UPI & Cloud Webhook:</span> <br><strong style="color: var(--accent-red); font-size: 1.15rem;">-₹0.60</strong></div>
+          <div><span style="color: var(--text-dim); font-weight: 600;">Net Margin per Cycle:</span> <br><strong style="color: var(--primary); font-size: 1.25rem;">₹18.57 (92.8%)</strong></div>
         </div>
       </div>
     </section>
@@ -986,24 +988,24 @@
 
       <div class="grid-3">
         <div class="card card-glow-cyan" id="slide8-card1">
-          <div style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase;">40M VENDORS DEMAND</div>
-          <div class="stat-number" style="color: #ffffff; margin-top: 0.5rem;">$18 Billion</div>
+          <div style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 800; text-transform: uppercase;">40M VENDORS DEMAND</div>
+          <div class="stat-number" style="color: var(--text-main); margin-top: 0.5rem;">$18 Billion</div>
           <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem;">
             40 Million informal street vendors in India circulating over $12B daily with zero access to bank capital.
           </p>
         </div>
 
         <div class="card card-glow-amber" id="slide8-card2">
-          <div style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase;">8 TRADING HUBS</div>
-          <div class="stat-number" style="color: #ffffff; margin-top: 0.5rem;">8 Cities</div>
+          <div style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 800; text-transform: uppercase;">8 TRADING HUBS</div>
+          <div class="stat-number" style="color: var(--text-main); margin-top: 0.5rem;">8 Cities</div>
           <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem;">
             Dense urban trading clusters: Delhi NCR, Mumbai, Bengaluru, Hyderabad, Ahmedabad, Kolkata, Lucknow, Indore.
           </p>
         </div>
 
         <div class="card card-glow-green" id="slide8-card3">
-          <div style="font-size: 0.85rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">ANNUAL RECURRING REVENUE</div>
-          <div class="stat-number" style="color: #ffffff; margin-top: 0.5rem;">$18M ARR</div>
+          <div style="font-size: 0.85rem; color: var(--primary); font-weight: 800; text-transform: uppercase;">ANNUAL RECURRING REVENUE</div>
+          <div class="stat-number" style="color: var(--primary); margin-top: 0.5rem;">$18M ARR</div>
           <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem;">
             Scaling to 250,000 active micro-merchants within 24 months unlocks $18 Million in high-margin ARR.
           </p>
@@ -1021,18 +1023,18 @@
 
       <div class="grid-3">
         <div class="card card-glow-amber" id="slide9-phase1">
-          <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;">MONTHS 1–3</span>
-          <h3 style="font-size: 1.2rem; color: #ffffff; margin: 0.5rem 0;">Phase 1: Pilot with 1,000 Vendors in Delhi's Azadpur Mandi</h3>
+          <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 800; background: #fef3c7; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid #d97706;">MONTHS 1–3</span>
+          <h3 style="font-size: 1.2rem; color: var(--text-main); margin: 0.75rem 0 0.5rem 0;">Phase 1: Pilot with 1,000 Vendors in Delhi's Azadpur Mandi</h3>
           <ul style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; padding-left: 1.2rem;">
             <li>Deploy pilot with 1,000 vendors in Azadpur Mandi (Delhi).</li>
-            <li>Calibrate UPI auto-split webhook latency (<250ms) and vernacular voice models.</li>
+            <li>Calibrate UPI auto-split webhook latency (&lt;250ms) and vernacular voice models.</li>
             <li>Zero credit default benchmark in controlled cohort.</li>
           </ul>
         </div>
 
         <div class="card card-glow-cyan" id="slide9-phase2">
-          <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700;">MONTHS 4–8</span>
-          <h3 style="font-size: 1.2rem; color: #ffffff; margin: 0.5rem 0;">Phase 2: Scale with Small Finance Banks via OCEN 4.0</h3>
+          <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 800; background: #e0f2fe; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--accent-cyan);">MONTHS 4–8</span>
+          <h3 style="font-size: 1.2rem; color: var(--text-main); margin: 0.75rem 0 0.5rem 0;">Phase 2: Scale with Small Finance Banks via OCEN 4.0</h3>
           <ul style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; padding-left: 1.2rem;">
             <li>Direct integration with 2 Small Finance Banks via OCEN 4.0.</li>
             <li>Roll out Parametric Weather Shield with micro-insurance partners.</li>
@@ -1041,8 +1043,8 @@
         </div>
 
         <div class="card card-glow-green" id="slide9-phase3">
-          <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700;">MONTHS 9–15</span>
-          <h3 style="font-size: 1.2rem; color: #ffffff; margin: 0.5rem 0;">Phase 3: National Scale to 100,000 Merchants Across 15 States</h3>
+          <span style="font-size: 0.85rem; color: var(--primary); font-weight: 800; background: #ecfdf5; padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--primary);">MONTHS 9–15</span>
+          <h3 style="font-size: 1.2rem; color: var(--text-main); margin: 0.75rem 0 0.5rem 0;">Phase 3: National Scale to 100,000 Merchants Across 15 States</h3>
           <ul style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; padding-left: 1.2rem;">
             <li>Scale nationally to 100,000+ merchants across 15 states.</li>
             <li>Launch Suraksha Goolak automated micro-pensions and group purchasing.</li>
@@ -1055,20 +1057,22 @@
     <!-- Slide 10: Conclusion / Impact -->
     <section class="slide" id="slide-10">
       <div class="slide-category">Graphiques Innovation Challenge • Conclusion</div>
-      <h2 class="slide-title" style="font-size: 3rem;">Redesigning the World: Dignity for the Hands That Feed Us</h2>
+      <h2 class="slide-title" style="font-size: 2.85rem;">Redesigning the World: Dignity for the Hands That Feed Us</h2>
       <p class="slide-subtitle">
         FinFlow saves vendors over ₹7,500 every month, restoring economic freedom and dignity to the backbone of our economy.
       </p>
 
-      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; margin-top: 1.5rem; align-items: stretch;">
-        <!-- Left: Cinematic Dignity Photo -->
-        <div class="card card-glow-green card-cinematic" id="slide10-raju" style="padding: 0; overflow: hidden; position: relative; min-height: 380px;">
-          <img src="images/raju_dignity_financial_peace.jpg" alt="Raju Smiling with FinFlow Soundbox at Dusk" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
-          <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(11, 15, 23, 0.95) 0%, rgba(11, 15, 23, 0.6) 60%, transparent 100%); padding: 1.5rem;">
-            <span style="background: rgba(16, 185, 129, 0.2); color: var(--primary-light); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid var(--primary);">
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-top: 1rem; align-items: stretch;">
+        <!-- Left: Stickman Dignity Restored Illustration -->
+        <div class="card card-glow-green card-cinematic" id="slide10-raju" style="padding: 0; overflow: hidden; position: relative; min-height: 380px; display: flex; flex-direction: column; background: #ffffff;">
+          <div style="flex: 1; position: relative; overflow: hidden;">
+            <img src="images/stickman_dignity_restored.jpg" alt="Raju Smiling with FinFlow Soundbox at Dusk" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+          <div style="background: #f8fafc; border-top: 1.5px solid var(--border-subtle); padding: 1.25rem;">
+            <span style="background: #ecfdf5; color: #065f46; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 20px; border: 1.5px solid var(--primary);">
               🌅 SAVES OVER ₹7,500 EVERY MONTH
             </span>
-            <h3 style="color: #ffffff; font-size: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">Economic Freedom & Dignity Restored</h3>
+            <h3 style="color: var(--text-main); font-size: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">Economic Freedom & Dignity Restored</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
               Raju ends each day with 100% debt clearance, liquid savings in his Suraksha Goolak, and automatic climate protection.
             </p>
@@ -1078,21 +1082,21 @@
         <!-- Right: The 3 Core Pillars of Impact -->
         <div id="slide10-impacts" style="display: flex; flex-direction: column; gap: 1rem; justify-content: space-between;">
           <div class="card card-glow-green" style="padding: 1.2rem;">
-            <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.35rem;">💰 Restoring Economic Freedom</h3>
+            <h3 style="color: var(--text-main); font-size: 1.15rem; margin-bottom: 0.35rem;">💰 Restoring Economic Freedom</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
               Saves the average street vendor over ₹7,500 every month in avoided loan shark interest—directly raising disposable household income by 35%.
             </p>
           </div>
 
           <div class="card card-glow-cyan" style="padding: 1.2rem;">
-            <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.35rem;">🛡️ Climate Resilience & Protection</h3>
+            <h3 style="color: var(--text-main); font-size: 1.15rem; margin-bottom: 0.35rem;">🛡️ Climate Resilience & Protection</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
               Autonomous weather safety net ensures heatwaves and floods no longer push vulnerable micro-entrepreneurs into poverty and bankruptcy.
             </p>
           </div>
 
           <div class="card card-glow-amber" style="padding: 1.2rem;">
-            <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.35rem;">🤝 Dignity for the Backbone of Our Economy</h3>
+            <h3 style="color: var(--text-main); font-size: 1.15rem; margin-bottom: 0.35rem;">🤝 Dignity for the Backbone of Our Economy</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
               Voice-first vernacular interaction empowers 40M+ non-literate vendors as equal participants in India's digital financial revolution.
             </p>
@@ -1114,7 +1118,6 @@
     const totalSlides = 10;
     let isPlayingAudio = false;
 
-    // Slide audio narration map (generated via Gemini Indian TTS)
     const audioFiles = {
       1: 'audio/slide_1.wav',
       2: 'audio/slide_2.wav',
@@ -1329,7 +1332,6 @@
         progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
       }
 
-      // Play audio if narration is enabled
       const player = document.getElementById('slide-audio-player');
       if (isPlayingAudio && audioFiles[currentSlide]) {
         player.src = audioFiles[currentSlide];
@@ -1392,7 +1394,6 @@
       }
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         nextSlide();
@@ -1401,13 +1402,11 @@
       }
     });
 
-    // Auto advance when audio finishes on a slide
     document.getElementById('slide-audio-player').addEventListener('ended', () => {
       if (isPlayingAudio) {
         if (currentSlide < totalSlides) {
           setTimeout(nextSlide, 800);
         } else {
-          // Finished last slide
           isPlayingAudio = false;
           const demoBtn = document.getElementById('btn-auto-demo');
           if (demoBtn) demoBtn.innerHTML = '<span>🔄</span> Replay Demo';
@@ -1419,7 +1418,6 @@
       }
     });
 
-    // Initialize slide state on load
     updateSlide();
   </script>
 </body>

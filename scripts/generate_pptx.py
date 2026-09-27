@@ -11,28 +11,31 @@ def create_deck():
     prs.slide_height = Inches(7.5)
     blank_slide_layout = prs.slide_layouts[6]
 
-    # Colors
-    c_bg = RGBColor(11, 15, 23)        # #0B0F17
-    c_card = RGBColor(18, 24, 38)      # #121826
-    c_card_border = RGBColor(30, 41, 59)
-    c_white = RGBColor(255, 255, 255)
-    c_muted = RGBColor(148, 163, 184)  # slate-400
-    c_green = RGBColor(16, 185, 129)   # #10B981
-    c_amber = RGBColor(245, 158, 11)   # #F59E0B
-    c_cyan = RGBColor(6, 182, 212)     # #06B6D4
-    c_red = RGBColor(239, 68, 68)
+    # Clean Modern FinTech White / Stickman Palette
+    c_bg = RGBColor(255, 255, 255)          # #FFFFFF Pure White
+    c_card = RGBColor(248, 250, 252)        # #F8FAFC Light Slate
+    c_card_border = RGBColor(226, 232, 240) # #E2E8F0 Subtle Border
+    c_title = RGBColor(15, 23, 42)          # #0F172A Deep Charcoal
+    c_muted = RGBColor(51, 65, 85)          # #334155 Slate 700
+    c_dim = RGBColor(100, 116, 139)         # #64748B Slate 500
+    c_green = RGBColor(5, 150, 105)         # #059669 Emerald Green
+    c_green_light = RGBColor(16, 185, 129)  # #10B981
+    c_green_bg = RGBColor(236, 253, 245)    # #ECFDF5 Emerald Tint
+    c_amber = RGBColor(217, 119, 6)         # #D97706 Amber Sunrise
+    c_cyan = RGBColor(2, 132, 199)          # #0284C7 Tech Blue
+    c_red = RGBColor(220, 38, 38)           # #DC2626 Warning Red
 
     slides_data = [
         # Slide 1: Hero
         {
-            "cat": "FINTECH & SOCIAL IMPACT • GRAPHIQUES INNOVATION CHALLENGE",
-            "title": "FinFlow (VyaparSetu): Algorithmic Daily Capital & Climate Resilience",
-            "subtitle": "Solving the liquidity crisis for 40M+ street vendors in India, replacing predatory debt with algorithmic daily capital and climate protection.",
+            "cat": "₹ FINFLOW (VYAPARSETU)  •  GRAPHIQUES INNOVATION CHALLENGE",
+            "title": "FinFlow: Algorithmic Daily Capital & Parametric Climate Resilience",
+            "subtitle": "Replacing 300%+ APR predatory debt for 40M unbanked street vendors in India with 4:30 AM algorithmic working capital, daily UPI micro-skimming, and autonomous climate protection.",
             "metrics": [
                 ("40M+", "Informal Micro-Vendors in India Driving Daily Commerce", c_amber),
                 (">300%", "Effective APR Charged by Informal Loan Sharks", c_red),
                 ("₹20", "Flat Daily Cycle Fee for FinFlow Sunrise Capital", c_green),
-                ("<10s", "Automated Morning Disbursement Latency via Soundbox", c_cyan)
+                ("<60s", "Parametric Weather Insurance Payout Without Paperwork", c_cyan)
             ]
         },
         # Slide 2: Raju's Story (Matches Audio Script Verbatim)
@@ -41,9 +44,9 @@ def create_deck():
             "title": "The Dawn Capital Deficit & The 300% APR Debt Trap",
             "subtitle": "At 4:30 AM, Raju the fruit vendor needs ₹3,000 for wholesale Mandi inventory. Slow banking forces him into predatory lenders charging over 300% APR, trapping his family in debt.",
             "photo_cards": [
-                ("presentation/images/raju_dawn_mandi.jpg", "🌅 4:30 AM Wholesale Mandi", "Needs ₹3,000 wholesale inventory capital before dawn. Traditional banks open at 10 AM.", c_amber),
-                ("presentation/images/predatory_loan_shark.jpg", "🩸 >300% APR Predatory Debt", "Slow banking forces him into lenders ('Meter Vaddi') charging over 300% APR, trapping his family in debt.", c_red),
-                ("presentation/images/monsoon_climate_shock.jpg", "⛈️ Zero Weather Relief", "Monsoon floods and heatwaves rot perishable inventory. With zero relief from lenders, vendors face default.", c_cyan)
+                ("presentation/images/stickman_raju_mandi.jpg", "🌅 4:30 AM Wholesale Mandi", "Needs ₹3,000 wholesale inventory capital before dawn. Traditional banks open at 10 AM.", c_amber),
+                ("presentation/images/stickman_loan_shark.jpg", "🩸 >300% APR Predatory Debt", "Slow banking forces him into lenders ('Meter Vaddi') charging over 300% APR, trapping his family in debt.", c_red),
+                ("presentation/images/stickman_climate_shock.jpg", "⛈️ Zero Weather Relief", "Monsoon floods and heatwaves rot perishable inventory. With zero relief from lenders, vendors face default.", c_cyan)
             ]
         },
         # Slide 3: Structural Failure (Matches Audio Script Verbatim)
@@ -76,7 +79,7 @@ def create_deck():
             "cat": "USER EXPERIENCE & DAILY JOURNEY",
             "title": "A Day in the Life: How Raju Vends with FinFlow",
             "subtitle": "Raju's day: at 4:30 AM, his smart soundbox disburses 3,000 rupees in seconds. Customer UPI payments auto-settle the loan in micro-slices, leaving his balance clear by evening.",
-            "image": "presentation/images/finflow_soundbox_terminal.jpg",
+            "image": "presentation/images/stickman_soundbox_split.jpg",
             "timeline": [
                 ("🌅 4:30 AM • Smart Soundbox Disburses ₹3,000 in Seconds", "Soundbox announces: 'Namaste Raju bhai, ₹3,000 Sunrise loan taiyaar hai.' Raju confirms 'Haan'. Disbursed in 5 seconds."),
                 ("🛒 11:30 AM • Customer UPI Payments Auto-Settle in Micro-Slices", "Customer pays ₹200 via UPI QR. Soundbox chirps: '₹200 prapt hue. ₹18 loan chukta, ₹2 Goolak mein jama!'"),
@@ -89,9 +92,9 @@ def create_deck():
             "cat": "ENGINEERING & SYSTEM ARCHITECTURE",
             "title": "Engineered on India's Digital Public Infrastructure",
             "subtitle": "Built on India's Digital Public Infrastructure, FinFlow integrates OCEN 4.0, real-time UPI settlement webhooks, and our Velocity TrustScore that replaces traditional credit scores.",
-            "image": "presentation/images/finflow_bank_dashboard.jpg",
+            "image": "presentation/images/stickman_soundbox_split.jpg",
             "bullets": [
-                ("⚡ Sub-250ms Real-Time Webhook Engine", "Instantaneous multi-split routing between vendor spendable wallet, NBFC loan vault, and Goolak on NPCI settlement webhooks."),
+                ("⚡ Sub-250ms Real-Time Webhook Engine", "Instantaneous multi-split routing between vendor spendable wallet, SFB loan vault, and Goolak on NPCI settlement webhooks."),
                 ("🧠 Velocity TrustScore ML Model (Replaces Credit Scores)", "Evaluates 90-day transaction regularity, mandi geo-location stamps, ticket size, and peer rings without CIBIL."),
                 ("📡 Parametric Weather Oracle", "Telemetry integration with Open-Meteo & IMD radar evaluates rainfall (mm/hr) and heat index across 1km² municipal polygons.")
             ]
@@ -136,7 +139,7 @@ def create_deck():
             "title": "Redesigning the World: Dignity for the Hands That Feed Us",
             "subtitle": "FinFlow saves vendors over ₹7,500 every month, restoring economic freedom and dignity to the backbone of our economy. Thank you.",
             "conclusion_split": {
-                "image": "presentation/images/raju_dignity_financial_peace.jpg",
+                "image": "presentation/images/stickman_dignity_restored.jpg",
                 "badge": "🌅 SAVES OVER ₹7,500 EVERY MONTH",
                 "pillars": [
                     ("💰 Restoring Economic Freedom", "Saves the average street vendor over ₹7,500 every month in avoided loan shark interest—directly raising disposable income by 35%.", c_green),
@@ -150,7 +153,7 @@ def create_deck():
     for s_idx, data in enumerate(slides_data):
         slide = prs.slides.add_slide(blank_slide_layout)
         
-        # Dark Background
+        # White Clean Background
         bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, Inches(13.333), Inches(7.5))
         bg.fill.solid()
         bg.fill.fore_color.rgb = c_bg
@@ -174,7 +177,7 @@ def create_deck():
         p_title.text = data["title"]
         p_title.font.size = Pt(28)
         p_title.font.bold = True
-        p_title.font.color.rgb = c_white
+        p_title.font.color.rgb = c_title
 
         # Slide Subtitle
         sub_box = slide.shapes.add_textbox(Inches(0.8), Inches(1.65), Inches(11.7), Inches(0.65))
@@ -217,7 +220,7 @@ def create_deck():
             card_w = Inches(3.7)
             card_y = Inches(2.45)
             card_h = Inches(4.5)
-            img_h = Inches(2.2)
+            img_h = Inches(2.4)
             
             for pc_i, (img_path, h_txt, b_txt, col) in enumerate(data["photo_cards"]):
                 card_x = Inches(0.8 + pc_i * 3.95)
@@ -228,9 +231,9 @@ def create_deck():
                 c_shape.line.color.rgb = col
                 
                 if os.path.exists(img_path):
-                    slide.shapes.add_picture(img_path, card_x, card_y, card_w, img_h)
+                    slide.shapes.add_picture(img_path, card_x + Inches(0.1), card_y + Inches(0.1), card_w - Inches(0.2), img_h)
                 
-                tb = slide.shapes.add_textbox(card_x + Inches(0.2), card_y + img_h + Inches(0.15), card_w - Inches(0.4), card_h - img_h - Inches(0.3))
+                tb = slide.shapes.add_textbox(card_x + Inches(0.2), card_y + img_h + Inches(0.2), card_w - Inches(0.4), card_h - img_h - Inches(0.3))
                 tf = tb.text_frame
                 tf.word_wrap = True
                 
@@ -238,7 +241,7 @@ def create_deck():
                 p_h.text = h_txt
                 p_h.font.size = Pt(14)
                 p_h.font.bold = True
-                p_h.font.color.rgb = c_white
+                p_h.font.color.rgb = c_title
                 
                 p_b = tf.add_paragraph()
                 p_b.text = b_txt
@@ -262,13 +265,13 @@ def create_deck():
                     cell.text = cell_text
                     cell.fill.solid()
                     if r_idx == 0:
-                        cell.fill.fore_color.rgb = RGBColor(16, 185, 129) if col_idx == 3 else RGBColor(30, 41, 59)
+                        cell.fill.fore_color.rgb = RGBColor(5, 150, 105) if col_idx == 3 else RGBColor(241, 245, 249)
                     else:
-                        cell.fill.fore_color.rgb = RGBColor(15, 35, 30) if col_idx == 3 else c_card
+                        cell.fill.fore_color.rgb = c_green_bg if col_idx == 3 else c_card
                     p = cell.text_frame.paragraphs[0]
                     p.font.size = Pt(11 if r_idx > 0 else 12)
                     p.font.bold = (r_idx == 0 or col_idx == 0 or col_idx == 3)
-                    p.font.color.rgb = c_white
+                    p.font.color.rgb = RGBColor(255, 255, 255) if (r_idx == 0 and col_idx == 3) else (RGBColor(6, 95, 70) if col_idx == 3 else c_title)
 
         # Render Pillars (Slide 4)
         elif "pillars" in data:
@@ -293,7 +296,7 @@ def create_deck():
                 p_h.text = f"{h_txt}  [{tag}]"
                 p_h.font.size = Pt(15)
                 p_h.font.bold = True
-                p_h.font.color.rgb = c_white
+                p_h.font.color.rgb = c_title
                 
                 p_d = tf.add_paragraph()
                 p_d.text = desc
@@ -343,7 +346,7 @@ def create_deck():
                 p_bt.text = b_title
                 p_bt.font.size = Pt(13)
                 p_bt.font.bold = True
-                p_bt.font.color.rgb = c_white
+                p_bt.font.color.rgb = c_title
                 
                 p_bd = tf.add_paragraph()
                 p_bd.text = b_desc
@@ -376,7 +379,7 @@ def create_deck():
                 p_stat.text = stat_txt
                 p_stat.font.size = Pt(36)
                 p_stat.font.bold = True
-                p_stat.font.color.rgb = c_white
+                p_stat.font.color.rgb = c_title
                 
                 p_desc = tf.add_paragraph()
                 p_desc.text = desc_txt
@@ -399,7 +402,7 @@ def create_deck():
                 p_pt.text = ph_title
                 p_pt.font.size = Pt(14)
                 p_pt.font.bold = True
-                p_pt.font.color.rgb = c_white
+                p_pt.font.color.rgb = c_title
                 
                 p_pd = tf.add_paragraph()
                 p_pd.text = ph_desc
@@ -430,7 +433,7 @@ def create_deck():
                 p_t.text = pi_title
                 p_t.font.size = Pt(14)
                 p_t.font.bold = True
-                p_t.font.color.rgb = c_white
+                p_t.font.color.rgb = c_title
                 
                 p_d = tf.add_paragraph()
                 p_d.text = pi_desc
