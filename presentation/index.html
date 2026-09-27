@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinFlow (VyaparSetu) — Executive Pitch Deck | Graphiques Innovation Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070a12;
+      --bg-card: rgba(15, 23, 42, 0.75);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(16, 185, 129, 0.35);
+      
+      --primary: #10b981; /* Emerald Green */
+      --primary-light: #34d399;
+      --accent-gold: #f59e0b; /* Amber Sunrise */
+      --accent-cyan: #06b6d4; /* Tech Cyan */
+      --accent-red: #ef4444; /* Crisis Red */
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --shadow-glow: 0 0 35px rgba(16, 185, 129, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* Deck Header & Navigation */
+    .deck-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(7, 10, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--primary));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #070a12;
+      font-size: 1.1rem;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badge-challenge {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--primary-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .slide-counter {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #059669);
+      color: #ffffff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Slides Container */
+    .slides-container {
+      margin-top: 64px;
+      width: 100vw;
+      min-height: calc(100vh - 64px);
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      min-height: calc(100vh - 64px);
+      padding: 3rem 4rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slide Typography & Layouts */
+    .slide-category {
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .slide-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .slide-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 900px;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.75rem;
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      transform: translateY(-4px);
+    }
+
+    .card-glow-green {
+      border-color: rgba(16, 185, 129, 0.3);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.08);
+    }
+
+    .card-glow-amber {
+      border-color: rgba(245, 158, 11, 0.3);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
+    }
+
+    .card-glow-cyan {
+      border-color: rgba(6, 182, 212, 0.3);
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.08);
+    }
+
+    .card-glow-red {
+      border-color: rgba(239, 68, 68, 0.3);
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.08);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .comparison-table th {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table td {
+      font-size: 0.95rem;
+    }
+
+    .highlight-cell {
+      background: rgba(16, 185, 129, 0.1);
+      color: #ffffff;
+      font-weight: 600;
+      border-left: 2px solid var(--primary);
+    }
+
+    /* Audio Player Widget */
+    .audio-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      margin-top: 1.5rem;
+    }
+
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 16px;
+    }
+
+    .audio-bar {
+      width: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+      animation: wave 1.2s infinite ease-in-out;
+    }
+
+    .audio-bar:nth-child(2) { animation-delay: 0.2s; }
+    .audio-bar:nth-child(3) { animation-delay: 0.4s; }
+    .audio-bar:nth-child(4) { animation-delay: 0.1s; }
+
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 16px; }
+    }
+
+    /* Interactive Simulator */
+    .simulator-container {
+      background: #0b1120;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* Motion Graphic & Cinematic Image Enhancements */
+    @keyframes kenburns {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+
+    .kenburns-img {
+      animation: kenburns 14s infinite alternate ease-in-out;
+      transform-origin: center center;
+    }
+
+    .card-cinematic {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-cinematic:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1.25rem;
+      position: relative;
+      padding-bottom: 1.75rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 36px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border-subtle);
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .timeline-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .timeline-icon.active {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Spotlight & Dimming Styles */
+    .card, .timeline-item, .comparison-table tr, .simulator-container > div {
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    body.spotlight-active .is-dimmed {
+      opacity: 0.28 !important;
+      filter: brightness(0.6) grayscale(35%) !important;
+      transform: scale(0.98) !important;
+    }
+
+    body.spotlight-active .is-spotlight {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(-4px) scale(1.025) !important;
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.55), 0 12px 28px rgba(0, 0, 0, 0.6) !important;
+      z-index: 10;
+    }
+
+    /* Floating Subtitle Bar */
+    .subtitle-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(7, 10, 18, 0.94);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(16, 185, 129, 0.2);
+      backdrop-filter: blur(16px);
+      padding: 0.65rem 1.6rem;
+      border-radius: 9999px;
+      max-width: 82%;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      z-index: 9999;
+      pointer-events: none;
+      animation: fadeInSub 0.3s ease;
+    }
+
+    @keyframes fadeInSub {
+      from { opacity: 0; transform: translate(-50%, 8px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .subtitle-badge {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--primary);
+      color: var(--primary-light);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .subtitle-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    body.video-mode .deck-header,
+    body.video-mode #deck-progress,
+    body.video-mode .subtitle-bar {
+      display: none !important;
+    }
+
+    body.video-mode .slides-container {
+      margin-top: 0 !important;
+    }
+
+    body.video-mode .slide {
+      min-height: 100vh !important;
+      height: 100vh !important;
+      padding: 3.5rem 5rem !important;
+    }
+
+    /* Print Styles for Perfect 16:9 Landscape PDF Export */
+    @media print {
+      body {
+        background: #070a12 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .deck-header {
+        display: none !important;
+      }
+
+      .slides-container {
+        margin-top: 0 !important;
+      }
+
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-after: always;
+        break-after: page;
+        min-height: 100vh;
+        height: 100vh;
+        padding: 3rem 4rem;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Deck Top Navigation -->
+  <header class="deck-header">
+    <div class="brand">
+      <div class="brand-logo">₹</div>
+      <div class="brand-title">FinFlow <span style="font-weight: 400; color: var(--text-dim); font-size: 1rem;">(VyaparSetu)</span></div>
+      <span class="badge-challenge">Graphiques Innovation Challenge</span>
+    </div>
+
+    <div class="nav-controls">
+      <button class="btn btn-primary" id="btn-auto-demo" onclick="startAutomatedDemo()">
+        <span>🎬</span> Auto-Play Demo (2m 23s)
+      </button>
+      <button class="btn" id="btn-audio-toggle" onclick="toggleAudioNarration()">
+        <span id="audio-icon">🔊</span> <span id="audio-text">Voiceover</span>
+      </button>
+      <button class="btn" onclick="window.print()">
+        <span>📄</span> PDF
+      </button>
+      <span class="slide-counter" id="slide-indicator">Slide 1 of 10</span>
+      <button class="btn" onclick="prevSlide()">◀</button>
+      <button class="btn" onclick="nextSlide()">▶</button>
+    </div>
+  </header>
+
+  <!-- Top Progress Bar -->
+  <div id="deck-progress" style="position: fixed; top: 64px; left: 0; height: 3px; width: 10%; background: linear-gradient(90deg, var(--accent-gold), var(--primary)); z-index: 101; transition: width 0.3s ease;"></div>
+
+  <!-- Audio Element for Narrations -->
+  <audio id="slide-audio-player" preload="auto"></audio>
+
+  <!-- Slides Viewport -->
+  <main class="slides-container">
+
+    <!-- Slide 1: Hero / Title -->
+    <section class="slide active" id="slide-1">
+      <div style="display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(16, 185, 129, 0.12); border: 1.5px solid var(--primary); padding: 0.4rem 1.25rem; border-radius: 9999px; margin-bottom: 1.5rem; width: fit-content; box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);">
+        <span style="font-size: 1.15rem; color: var(--primary); font-weight: 800;">₹</span>
+        <span style="color: #ffffff; font-weight: 800; font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase;">
+          FinFlow (VyaparSetu)
+        </span>
+        <span style="height: 14px; width: 1px; background: rgba(255, 255, 255, 0.2); margin: 0 0.15rem;"></span>
+        <span style="color: var(--primary-light); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
+          Graphiques Innovation Challenge
+        </span>
+      </div>
+
+      <h1 class="slide-title" style="font-size: 3.8rem; max-width: 1100px; line-height: 1.12; margin-bottom: 1.25rem;">
+        <span style="background: linear-gradient(135deg, #ffffff 40%, var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          FinFlow:
+        </span>
+        <span style="background: linear-gradient(135deg, var(--accent-gold), #fde047); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Algorithmic Daily Capital
+        </span>
+        <br>
+        <span style="font-size: 2.75rem; font-weight: 700; color: #f8fafc;">
+          & Parametric Climate Resilience
+        </span>
+      </h1>
+      <p class="slide-subtitle" style="font-size: 1.25rem; max-width: 950px; line-height: 1.55;">
+        Replacing 300%+ APR predatory debt for 40M unbanked street vendors in India with 4:30 AM algorithmic working capital, daily UPI micro-skimming, and autonomous climate protection.
+      </p>
+
+      <div class="grid-4" style="margin-top: 1.5rem;">
+        <div class="card card-glow-amber">
+          <div class="stat-number" style="color: var(--accent-gold);">40M+</div>
+          <div class="stat-label">Informal Micro-Vendors in India Driving Daily Commerce</div>
+        </div>
+        <div class="card card-glow-red">
+          <div class="stat-number" style="color: var(--accent-red);">>300%</div>
+          <div class="stat-label">Effective APR Charged by Informal Loan Sharks</div>
+        </div>
+        <div class="card card-glow-green">
+          <div class="stat-number" style="color: var(--primary);">₹20</div>
+          <div class="stat-label">Flat Daily Cycle Fee for FinFlow Sunrise Capital</div>
+        </div>
+        <div class="card card-glow-cyan">
+          <div class="stat-number" style="color: var(--accent-cyan);"><60s</div>
+          <div class="stat-label">Parametric Weather Insurance Payout Without Paperwork</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: The Human Crisis / Raju's Story -->
+    <section class="slide" id="slide-2">
+      <div class="slide-category">The Real-World Crisis • Raju's Story</div>
+      <h2 class="slide-title">The Dawn Capital Deficit & The 300% APR Debt Trap</h2>
+      <p class="slide-subtitle">
+        At 4:30 AM, Raju the fruit vendor needs ₹3,000 for wholesale Mandi inventory. Slow banking forces him into predatory lenders charging over 300% APR, trapping his family in debt.
+      </p>
+
+      <div class="grid-3">
+        <!-- 1. Dawn Mandi -->
+        <div class="card card-glow-amber card-cinematic" id="slide2-card1" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="position: relative; height: 190px; overflow: hidden;">
+            <img src="images/raju_dawn_mandi.jpg" alt="Raju at 4:30 AM Mandi" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(11, 15, 23, 0.85); backdrop-filter: blur(8px); color: var(--accent-gold); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--accent-gold);">
+              🌅 4:30 AM WHOLESALE MANDI
+            </span>
+          </div>
+          <div style="padding: 1.25rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.4rem;">Needs ₹3,000 Morning Capital</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.45;">
+              Wholesale mandis operate before dawn. Commercial banks open at 10 AM and take 7–14 days. Raju needs capital in 5 minutes.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Predatory Loan Shark -->
+        <div class="card card-glow-red card-cinematic" id="slide2-card2" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="position: relative; height: 190px; overflow: hidden;">
+            <img src="images/predatory_loan_shark.jpg" alt="Predatory Moneylender Loan Shark" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(11, 15, 23, 0.85); backdrop-filter: blur(8px); color: var(--accent-red); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--accent-red);">
+              🩸 >300% APR PREDATORY DEBT
+            </span>
+          </div>
+          <div style="padding: 1.25rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.4rem;">Charging Over 300% APR</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.45;">
+              Slow banking forces him into predatory lenders ("Meter Vaddi") charging 10%–20% monthly interest, trapping his family in debt.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. Climate Shock -->
+        <div class="card card-glow-cyan card-cinematic" id="slide2-card3" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="position: relative; height: 190px; overflow: hidden;">
+            <img src="images/monsoon_climate_shock.jpg" alt="Monsoon Climate Shock in Street Market" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 12px; left: 12px; background: rgba(11, 15, 23, 0.85); backdrop-filter: blur(8px); color: var(--accent-cyan); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--accent-cyan);">
+              ⛈️ ZERO WEATHER RELIEF
+            </span>
+          </div>
+          <div style="padding: 1.25rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.4rem;">Trapping Family in Debt</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.45;">
+              Monsoon floods and heatwaves rot perishable inventory. With zero relief from lenders, vendors face multi-year default traps.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Why Existing Banking Fails -->
+    <section class="slide" id="slide-3">
+      <div class="slide-category">Structural Failure Analysis</div>
+      <h2 class="slide-title">Why Traditional Banking & MFIs Fail Street Vendors</h2>
+      <p class="slide-subtitle">
+        Formal financial institutions enforce rigid corporate mechanisms on volatile informal daily workflows.
+      </p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Commercial Banks</th>
+            <th>Microfinance (MFI)</th>
+            <th class="highlight-cell">FinFlow (VyaparSetu)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="slide3-row1">
+            <td style="font-weight: 600; color: #ffffff;">Underwriting Data</td>
+            <td style="color: var(--text-muted);">ITR, CIBIL, audited balance sheets</td>
+            <td style="color: var(--text-muted);">Joint liability group peer pressure</td>
+            <td class="highlight-cell">Velocity TrustScore (Daily UPI frequency & consistency)</td>
+          </tr>
+          <tr id="slide3-row2">
+            <td style="font-weight: 600; color: #ffffff;">Repayment Frequency</td>
+            <td style="color: var(--text-muted);">Rigid monthly EMI</td>
+            <td style="color: var(--text-muted);">Bi-weekly mandatory meetings</td>
+            <td class="highlight-cell">Real-time reverse micro-skimming per daily QR payment</td>
+          </tr>
+          <tr id="slide3-row3">
+            <td style="font-weight: 600; color: #ffffff;">Disbursement Speed</td>
+            <td style="color: var(--text-muted);">5 to 14 Business Days</td>
+            <td style="color: var(--text-muted);">2 to 4 Weeks</td>
+            <td class="highlight-cell">Instant (<10 seconds at 4:30 AM via Voice/Soundbox)</td>
+          </tr>
+          <tr id="slide3-row-bottom">
+            <td style="font-weight: 600; color: #ffffff;">Climate Shock Defense</td>
+            <td style="color: var(--text-muted);">None (Default penalty applied)</td>
+            <td style="color: var(--text-muted);">None (Coercive collection agents)</td>
+            <td class="highlight-cell">Autonomous Parametric Weather Moratorium & Relief</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Slide 4: The 4 Pillars of FinFlow -->
+    <section class="slide" id="slide-4">
+      <div class="slide-category">The Core Innovation</div>
+      <h2 class="slide-title">The Four Pillars of the FinFlow Protocol</h2>
+      <p class="slide-subtitle">
+        Transforming informal commerce from predatory debt into sustainable daily velocity.
+      </p>
+
+      <div class="grid-2" id="slide4-pillars" style="margin-bottom: 1.5rem;">
+        <div class="card card-glow-amber" style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff;">🌅 1. Sunrise Capital</h3>
+            <span style="color: var(--accent-gold); font-weight: 700; font-size: 0.75rem; background: rgba(245, 158, 11, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">4:30 AM DISBURSEMENT</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+            Pre-dawn inventory advances (₹1,500–₹5,000) triggered via regional voice. Disbursed in <5s at a flat ₹20 fee (0.8% vs 15%+ predatory loan sharks).
+          </p>
+        </div>
+
+        <div class="card card-glow-green" style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff;">⚡ 2. Reverse Micro-Skimming</h3>
+            <span style="color: var(--primary); font-weight: 700; font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">AUTO DAILY SETTLEMENT</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+            As retail customers scan Raju's QR, the engine algorithmically deducts 8%–10% per sale. Advance is 100% repaid by dusk with zero debt rollover.
+          </p>
+        </div>
+
+        <div class="card card-glow-cyan" style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff;">🏺 3. Suraksha Goolak</h3>
+            <span style="color: var(--accent-cyan); font-weight: 700; font-size: 0.75rem; background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">6.5% HIGH-YIELD BUFFER</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+            Weekend and festival sales surpluses automatically route into an overnight liquid fund, building a family rainy-day reserve with 1-voice instant liquidity.
+          </p>
+        </div>
+
+        <div class="card card-glow-green" style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="font-size: 1.15rem; color: #ffffff;">🛡️ 4. Parametric Climate Shield</h3>
+            <span style="color: var(--primary-light); font-weight: 700; font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px;">AUTONOMOUS WEATHER RELIEF</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+            Radar alerts (>35mm/hr rain or >43°C heat) auto-freeze daily repayments and disburse ₹600 emergency relief for spoiled inventory with zero paperwork.
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Flow Demonstration Widget: How a ₹200 UPI Scan Actually Splits -->
+      <div id="slide4-telemetry" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-glow); border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow-glow);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.25rem;">📱</span>
+            <span style="font-weight: 700; color: #ffffff; font-size: 0.95rem;">Live Real-Time Telemetry: Single ₹200 UPI QR Customer Payment</span>
+          </div>
+          <span style="background: rgba(16, 185, 129, 0.2); color: var(--primary-light); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid var(--primary);">
+            NPCI Webhook: 142ms Latency
+          </span>
+        </div>
+
+        <!-- Split Distribution Bar -->
+        <div style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.05);">
+          <div style="width: 90%; background: linear-gradient(90deg, #10b981, #059669); transition: width 0.5s ease;" title="90% Vendor Working Cash"></div>
+          <div style="width: 9%; background: linear-gradient(90deg, #f59e0b, #d97706); transition: width 0.5s ease;" title="9% Sunrise Advance Repayment"></div>
+          <div style="width: 1%; background: linear-gradient(90deg, #06b6d4, #0284c7); transition: width 0.5s ease;" title="1% Suraksha Goolak Savings"></div>
+        </div>
+
+        <!-- Metric Cards of the Split -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 1rem; align-items: center;">
+          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Vendor Spendable Cash</div>
+            <div style="font-size: 1.35rem; font-weight: 800; color: var(--primary); margin-top: 0.2rem;">₹180.00</div>
+            <div style="font-size: 0.7rem; color: var(--primary-light);">90% • Instant Wallet Credit</div>
+          </div>
+
+          <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Micro-Advance Paydown</div>
+            <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-gold); margin-top: 0.2rem;">₹18.00</div>
+            <div style="font-size: 0.7rem; color: var(--accent-gold);">9% • Balance: ₹2,982 remaining</div>
+          </div>
+
+          <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 8px; padding: 0.75rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Suraksha Goolak Savings</div>
+            <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-cyan); margin-top: 0.2rem;">₹2.00</div>
+            <div style="font-size: 0.7rem; color: var(--accent-cyan);">1% • 6.5% Liquid Yield</div>
+          </div>
+
+          <div style="background: rgba(30, 41, 59, 0.6); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+            <div style="font-size: 1.5rem;">🛡️</div>
+            <div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Climate Shield Oracle</div>
+              <div style="font-size: 0.72rem; color: var(--primary-light);">IMD Radar: Rain 4mm/hr (Normal)</div>
+              <div style="font-size: 0.68rem; color: var(--text-muted);">Auto-pause armed at >35mm/hr</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Raju's Day Interactive Walkthrough -->
+    <section class="slide" id="slide-5">
+      <div class="slide-category">User Experience & Daily Journey</div>
+      <h2 class="slide-title">A Day in the Life: How Raju Vends with FinFlow</h2>
+      <p class="slide-subtitle">
+        Zero paperwork. 100% Voice-driven in Hindi. Complete financial dignity.
+      </p>
+
+      <div class="simulator-container">
+        <div id="slide5-timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon active">🌅</div>
+            <div>
+              <h4 style="color: #ffffff; font-size: 1.1rem;">4:30 AM • Wholesale Mandi</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
+                Soundbox announces: <em>"Namaste Raju bhai, ₹3,000 Sunrise loan taiyaar hai."</em> Raju speaks <em>"Haan"</em>. ₹3,000 arrives in 5 seconds. He buys fresh apples.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon active">🛒</div>
+            <div>
+              <h4 style="color: #ffffff; font-size: 1.1rem;">11:30 AM • Retail Sales</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
+                Customer buys 2kg fruit for ₹200 via UPI. Soundbox chirps: <em>"₹200 prapt hue. ₹18 loan chukta, ₹2 Goolak mein jama!"</em> Raju keeps ₹180 immediately.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon active">⛈️</div>
+            <div>
+              <h4 style="color: #ffffff; font-size: 1.1rem;">2:00 PM • Monsoon Downpour</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
+                45mm rain hits the market. FinFlow Weather Oracle auto-triggers: repayments pause, zero penalty, ₹600 compensation credited to protect from spoiled fruit.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon active">🌙</div>
+            <div>
+              <h4 style="color: #ffffff; font-size: 1.1rem;">8:30 PM • Zero-Debt Evening</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top: 0.25rem;">
+                Total sales ₹3,800. ₹3,000 advance + ₹20 fee 100% cleared. ₹114 saved in Goolak. TrustScore increases +6 points. Raju sleeps peaceful with no loan shark debt.
+              </p>
+            </div>
+          </div>
+        </div>
+
+          <div id="slide5-soundbox" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem;">
+                <span style="font-weight: 700; color: #ffffff;">Soundbox Live Status</span>
+                <span style="color: var(--primary); font-size: 0.85rem; font-weight: 600;">● Online 4G</span>
+              </div>
+
+              <div style="margin-top: 1rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-subtle);">
+                <img src="images/finflow_soundbox_terminal.jpg" alt="FinFlow Soundbox Terminal" style="width: 100%; height: 160px; object-fit: cover;">
+              </div>
+
+              <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 0.75rem; border-radius: 8px;">
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Sunrise Advance</div>
+                  <div style="font-size: 1.25rem; font-weight: 800; color: #ffffff;">₹3,000</div>
+                  <div style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">100% Repaid</div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 0.75rem; border-radius: 8px;">
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Suraksha Goolak</div>
+                  <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-cyan);">₹4,820</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">+6.5% Yield</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 0.75rem; margin-top: 1rem;">
+              <div style="font-weight: 700; color: var(--primary-light); font-size: 0.85rem;">Voice Command Active</div>
+              <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 0.2rem;">Listening in Hindi, Tamil, Telugu, Marathi & Bengali</div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Technical System Architecture -->
+    <section class="slide" id="slide-6">
+      <div class="slide-category">Engineering & System Architecture</div>
+      <h2 class="slide-title">Engineered on India's Digital Public Infrastructure</h2>
+      <p class="slide-subtitle">
+        Built to institutional standards: Open Credit Enablement Network (OCEN 4.0), UPI Auto-Split, and Decentralized Weather Telemetry.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: stretch;">
+        <div id="slide6-portal" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-glow);">
+          <img src="images/finflow_bank_dashboard.jpg" alt="FinFlow Institutional Portal & OCEN 4.0 Gateway" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div id="slide6-right" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card card-glow-cyan" id="slide6-webhook" style="padding: 1.2rem;">
+            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.35rem;">⚡ Real-Time Webhook Engine</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+              Sub-250ms asynchronous webhook pipeline listening to NPCI UPI settlement notifications. Performs instantaneous multi-split routing between vendor spendable balance, NBFC loan vault, and Goolak.
+            </p>
+          </div>
+
+          <div class="card card-glow-green" id="slide6-trustscore" style="padding: 1.2rem;">
+            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.35rem;">🧠 Velocity TrustScore ML</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+              Dynamic ML risk model evaluating 90-day transaction regularity, mandi geo-location stamps, ticket size distribution, and peer guarantor rings—eliminating the need for CIBIL/collateral.
+            </p>
+          </div>
+
+          <div class="card card-glow-amber" id="slide6-oracle" style="padding: 1.2rem;">
+            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 0.35rem;">📡 Parametric Weather Oracle</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+              Direct telemetry integration with Open-Meteo & IMD radar. Evaluates rainfall intensity (mm/hr) and heat index across 1km² municipal polygons to trigger automated moratoriums and claim payouts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Business Model & Unit Economics -->
+    <section class="slide" id="slide-7">
+      <div class="slide-category">Business Model & Unit Economics</div>
+      <h2 class="slide-title">High-Margin, Asset-Light Business Model</h2>
+      <p class="slide-subtitle">
+        Our business model is high-margin and asset-light. A flat ₹20 fee per daily cycle delivers an 86.8% net margin and a 14.8x lifetime value to CAC ratio.
+      </p>
+
+      <div class="grid-4" style="margin-bottom: 2rem;">
+        <div class="card card-glow-amber" id="slide7-fee">
+          <div class="stat-number" style="color: var(--accent-gold);">₹20</div>
+          <div class="stat-label">Flat Fee per Daily Cycle (₹3,000 Advance)</div>
+        </div>
+        <div class="card card-glow-green" id="slide7-margin">
+          <div class="stat-number" style="color: var(--primary);">86.8%</div>
+          <div class="stat-label">Net Contribution Margin per Vendor</div>
+        </div>
+        <div class="card card-glow-cyan" id="slide7-ltv">
+          <div class="stat-number" style="color: var(--accent-cyan);">14.8x</div>
+          <div class="stat-label">Lifetime Value (LTV) to CAC Ratio</div>
+        </div>
+        <div class="card card-glow-green" id="slide7-default">
+          <div class="stat-number" style="color: var(--primary-light);"><0.8%</div>
+          <div class="stat-label">NPL Default Rate via Micro-Skimming</div>
+        </div>
+      </div>
+
+      <div class="card" id="slide7-breakdown" style="background: rgba(15, 23, 42, 0.5);">
+        <h4 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 0.75rem;">Daily Asset-Light Economics (Per ₹3,000 Daily Advance Cycle)</h4>
+        <div class="grid-4" style="font-size: 0.95rem;">
+          <div><span style="color: var(--text-dim);">Gross Daily Fee:</span> <br><strong style="color: #ffffff;">₹20.00 Flat</strong></div>
+          <div><span style="color: var(--text-dim);">Cost of Capital (NBFC):</span> <br><strong style="color: var(--accent-red);">-₹0.83 (10% p.a.)</strong></div>
+          <div><span style="color: var(--text-dim);">UPI & Cloud Webhook:</span> <br><strong style="color: var(--accent-red);">-₹0.60</strong></div>
+          <div><span style="color: var(--text-dim);">Net Margin per Cycle:</span> <br><strong style="color: var(--primary); font-size: 1.2rem;">₹18.57 (92.8%)</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Market Opportunity & TAM -->
+    <section class="slide" id="slide-8">
+      <div class="slide-category">Market Opportunity & Revenue Scale</div>
+      <h2 class="slide-title">40M Vendors • $18 Billion Daily Capital Demand</h2>
+      <p class="slide-subtitle">
+        Forty million vendors represent an $18 Billion working capital demand. Scaling to 250,000 merchants across 8 trading hubs unlocks $18 Million in ARR.
+      </p>
+
+      <div class="grid-3">
+        <div class="card card-glow-cyan" id="slide8-card1">
+          <div style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase;">40M VENDORS DEMAND</div>
+          <div class="stat-number" style="color: #ffffff; margin-top: 0.5rem;">$18 Billion</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem;">
+            40 Million informal street vendors in India circulating over $12B daily with zero access to bank capital.
+          </p>
+        </div>
+
+        <div class="card card-glow-amber" id="slide8-card2">
+          <div style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase;">8 TRADING HUBS</div>
+          <div class="stat-number" style="color: #ffffff; margin-top: 0.5rem;">8 Cities</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem;">
+            Dense urban trading clusters: Delhi NCR, Mumbai, Bengaluru, Hyderabad, Ahmedabad, Kolkata, Lucknow, Indore.
+          </p>
+        </div>
+
+        <div class="card card-glow-green" id="slide8-card3">
+          <div style="font-size: 0.85rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">ANNUAL RECURRING REVENUE</div>
+          <div class="stat-number" style="color: #ffffff; margin-top: 0.5rem;">$18M ARR</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.5rem;">
+            Scaling to 250,000 active micro-merchants within 24 months unlocks $18 Million in high-margin ARR.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Implementation Roadmap -->
+    <section class="slide" id="slide-9">
+      <div class="slide-category">Execution & Go-To-Market</div>
+      <h2 class="slide-title">15-Month Scaled Implementation Roadmap</h2>
+      <p class="slide-subtitle">
+        Structured phased execution minimizing credit risk while rapidly scaling distribution.
+      </p>
+
+      <div class="grid-3">
+        <div class="card card-glow-amber" id="slide9-phase1">
+          <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;">MONTHS 1–3</span>
+          <h3 style="font-size: 1.2rem; color: #ffffff; margin: 0.5rem 0;">Phase 1: Pilot with 1,000 Vendors in Delhi's Azadpur Mandi</h3>
+          <ul style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; padding-left: 1.2rem;">
+            <li>Deploy pilot with 1,000 vendors in Azadpur Mandi (Delhi).</li>
+            <li>Calibrate UPI auto-split webhook latency (<250ms) and vernacular voice models.</li>
+            <li>Zero credit default benchmark in controlled cohort.</li>
+          </ul>
+        </div>
+
+        <div class="card card-glow-cyan" id="slide9-phase2">
+          <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700;">MONTHS 4–8</span>
+          <h3 style="font-size: 1.2rem; color: #ffffff; margin: 0.5rem 0;">Phase 2: Scale with Small Finance Banks via OCEN 4.0</h3>
+          <ul style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; padding-left: 1.2rem;">
+            <li>Direct integration with 2 Small Finance Banks via OCEN 4.0.</li>
+            <li>Roll out Parametric Weather Shield with micro-insurance partners.</li>
+            <li>Expand to 15,000 merchants across Mumbai & Bengaluru.</li>
+          </ul>
+        </div>
+
+        <div class="card card-glow-green" id="slide9-phase3">
+          <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700;">MONTHS 9–15</span>
+          <h3 style="font-size: 1.2rem; color: #ffffff; margin: 0.5rem 0;">Phase 3: National Scale to 100,000 Merchants Across 15 States</h3>
+          <ul style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; padding-left: 1.2rem;">
+            <li>Scale nationally to 100,000+ merchants across 15 states.</li>
+            <li>Launch Suraksha Goolak automated micro-pensions and group purchasing.</li>
+            <li>Establish permanent pathway to formal institutional banking.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: Conclusion / Impact -->
+    <section class="slide" id="slide-10">
+      <div class="slide-category">Graphiques Innovation Challenge • Conclusion</div>
+      <h2 class="slide-title" style="font-size: 3rem;">Redesigning the World: Dignity for the Hands That Feed Us</h2>
+      <p class="slide-subtitle">
+        FinFlow saves vendors over ₹7,500 every month, restoring economic freedom and dignity to the backbone of our economy.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; margin-top: 1.5rem; align-items: stretch;">
+        <!-- Left: Cinematic Dignity Photo -->
+        <div class="card card-glow-green card-cinematic" id="slide10-raju" style="padding: 0; overflow: hidden; position: relative; min-height: 380px;">
+          <img src="images/raju_dignity_financial_peace.jpg" alt="Raju Smiling with FinFlow Soundbox at Dusk" class="kenburns-img" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(11, 15, 23, 0.95) 0%, rgba(11, 15, 23, 0.6) 60%, transparent 100%); padding: 1.5rem;">
+            <span style="background: rgba(16, 185, 129, 0.2); color: var(--primary-light); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid var(--primary);">
+              🌅 SAVES OVER ₹7,500 EVERY MONTH
+            </span>
+            <h3 style="color: #ffffff; font-size: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">Economic Freedom & Dignity Restored</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+              Raju ends each day with 100% debt clearance, liquid savings in his Suraksha Goolak, and automatic climate protection.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: The 3 Core Pillars of Impact -->
+        <div id="slide10-impacts" style="display: flex; flex-direction: column; gap: 1rem; justify-content: space-between;">
+          <div class="card card-glow-green" style="padding: 1.2rem;">
+            <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.35rem;">💰 Restoring Economic Freedom</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+              Saves the average street vendor over ₹7,500 every month in avoided loan shark interest—directly raising disposable household income by 35%.
+            </p>
+          </div>
+
+          <div class="card card-glow-cyan" style="padding: 1.2rem;">
+            <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.35rem;">🛡️ Climate Resilience & Protection</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+              Autonomous weather safety net ensures heatwaves and floods no longer push vulnerable micro-entrepreneurs into poverty and bankruptcy.
+            </p>
+          </div>
+
+          <div class="card card-glow-amber" style="padding: 1.2rem;">
+            <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.35rem;">🤝 Dignity for the Backbone of Our Economy</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.4;">
+              Voice-first vernacular interaction empowers 40M+ non-literate vendors as equal participants in India's digital financial revolution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Subtitle Bar for Video and Demo -->
+  <div class="subtitle-bar" id="subtitle-bar" style="display: none;">
+    <span class="subtitle-badge">FinFlow Audio</span>
+    <span class="subtitle-text" id="subtitle-text"></span>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+    let isPlayingAudio = false;
+
+    // Slide audio narration map (generated via Gemini Indian TTS)
+    const audioFiles = {
+      1: 'audio/slide_1.wav',
+      2: 'audio/slide_2.wav',
+      3: 'audio/slide_3.wav',
+      4: 'audio/slide_4.wav',
+      5: 'audio/slide_5.wav',
+      6: 'audio/slide_6.wav',
+      7: 'audio/slide_7.wav',
+      8: 'audio/slide_8.wav',
+      9: 'audio/slide_9.wav',
+      10: 'audio/slide_10.wav'
+    };
+
+    const spotlightStates = {
+      '1': {
+        slide: 1,
+        text: "Welcome to FinFlow, also known as VyaparSetu. We solve the liquidity crisis for 40M street vendors in India, replacing predatory debt with algorithmic daily capital and climate protection.",
+        spotlight: [],
+        dimmed: []
+      },
+      '2a': {
+        slide: 2,
+        text: "At 4:30 AM, Raju the fruit vendor needs 3,000 rupees for wholesale mandi inventory.",
+        spotlight: ['#slide2-card1'],
+        dimmed: ['#slide2-card2', '#slide2-card3']
+      },
+      '2b': {
+        slide: 2,
+        text: "Slow banking forces him into predatory lenders charging over 300 percent APR,",
+        spotlight: ['#slide2-card2'],
+        dimmed: ['#slide2-card1', '#slide2-card3']
+      },
+      '2c': {
+        slide: 2,
+        text: "trapping his family in debt.",
+        spotlight: ['#slide2-card3'],
+        dimmed: ['#slide2-card1', '#slide2-card2']
+      },
+      '3a': {
+        slide: 3,
+        text: "Traditional banks fail informal vendors by demanding collateral, tax returns, and rigid monthly EMIs.",
+        spotlight: ['#slide3-row1', '#slide3-row2', '#slide3-row3'],
+        dimmed: ['#slide3-row-bottom']
+      },
+      '3b': {
+        slide: 3,
+        text: "When heatwaves or floods hit, lenders offer zero relief, triggering default.",
+        spotlight: ['#slide3-row-bottom'],
+        dimmed: ['#slide3-row1', '#slide3-row2', '#slide3-row3']
+      },
+      '4a': {
+        slide: 4,
+        text: "FinFlow introduces four pillars: Sunrise Capital for 4:30 AM advances, Reverse Micro-Skimming, Suraksha Goolak, and Parametric Climate Shield.",
+        spotlight: ['#slide4-pillars'],
+        dimmed: ['#slide4-telemetry']
+      },
+      '4b': {
+        slide: 4,
+        text: "Live Telemetry: Customer ₹200 UPI scan auto-splits into 90% vendor cash, 9% advance paydown, and 1% savings.",
+        spotlight: ['#slide4-telemetry'],
+        dimmed: ['#slide4-pillars']
+      },
+      '5a': {
+        slide: 5,
+        text: "Raju's day: at 4:30 AM, his smart soundbox disburses 3,000 rupees in seconds.",
+        spotlight: ['#slide5-soundbox'],
+        dimmed: ['#slide5-timeline']
+      },
+      '5b': {
+        slide: 5,
+        text: "Customer UPI payments auto-settle the loan in micro-slices, leaving his balance clear by evening.",
+        spotlight: ['#slide5-timeline'],
+        dimmed: ['#slide5-soundbox']
+      },
+      '6a': {
+        slide: 6,
+        text: "Built on India's Digital Public Infrastructure, FinFlow integrates OCEN 4.0,",
+        spotlight: ['#slide6-portal'],
+        dimmed: ['#slide6-right']
+      },
+      '6b': {
+        slide: 6,
+        text: "real-time UPI settlement webhooks,",
+        spotlight: ['#slide6-webhook'],
+        dimmed: ['#slide6-portal', '#slide6-trustscore', '#slide6-oracle']
+      },
+      '6c': {
+        slide: 6,
+        text: "and our Velocity TrustScore that replaces traditional credit scores.",
+        spotlight: ['#slide6-trustscore'],
+        dimmed: ['#slide6-portal', '#slide6-webhook', '#slide6-oracle']
+      },
+      '7a': {
+        slide: 7,
+        text: "Our business model is high-margin and asset-light. A flat 20-rupee fee per daily cycle delivers an 86.8 percent net margin,",
+        spotlight: ['#slide7-fee', '#slide7-margin'],
+        dimmed: ['#slide7-ltv', '#slide7-default', '#slide7-breakdown']
+      },
+      '7b': {
+        slide: 7,
+        text: "and a 14.8 times lifetime value to CAC ratio.",
+        spotlight: ['#slide7-ltv', '#slide7-breakdown'],
+        dimmed: ['#slide7-fee', '#slide7-margin', '#slide7-default']
+      },
+      '8a': {
+        slide: 8,
+        text: "Forty million vendors represent an 18-billion-dollar working capital demand.",
+        spotlight: ['#slide8-card1'],
+        dimmed: ['#slide8-card2', '#slide8-card3']
+      },
+      '8b': {
+        slide: 8,
+        text: "Scaling to 250,000 merchants across eight trading hubs,",
+        spotlight: ['#slide8-card2'],
+        dimmed: ['#slide8-card1', '#slide8-card3']
+      },
+      '8c': {
+        slide: 8,
+        text: "unlocks 18 million dollars in annual recurring revenue.",
+        spotlight: ['#slide8-card3'],
+        dimmed: ['#slide8-card1', '#slide8-card2']
+      },
+      '9a': {
+        slide: 9,
+        text: "Our 15-month roadmap pilots with 1,000 vendors in Delhi's Azadpur Mandi,",
+        spotlight: ['#slide9-phase1'],
+        dimmed: ['#slide9-phase2', '#slide9-phase3']
+      },
+      '9b': {
+        slide: 9,
+        text: "scales with Small Finance Banks via OCEN 4.0,",
+        spotlight: ['#slide9-phase2'],
+        dimmed: ['#slide9-phase1', '#slide9-phase3']
+      },
+      '9c': {
+        slide: 9,
+        text: "and expands nationally to 100,000 merchants across fifteen states.",
+        spotlight: ['#slide9-phase3'],
+        dimmed: ['#slide9-phase1', '#slide9-phase2']
+      },
+      '10a': {
+        slide: 10,
+        text: "FinFlow saves vendors over 7,500 rupees every month,",
+        spotlight: ['#slide10-raju'],
+        dimmed: ['#slide10-impacts']
+      },
+      '10b': {
+        slide: 10,
+        text: "restoring economic freedom and dignity to the backbone of our economy. Thank you.",
+        spotlight: ['#slide10-raju', '#slide10-impacts'],
+        dimmed: []
+      }
+    };
+
+    function applySpotlightState(stateName) {
+      document.querySelectorAll('.is-spotlight').forEach(el => el.classList.remove('is-spotlight'));
+      document.querySelectorAll('.is-dimmed').forEach(el => el.classList.remove('is-dimmed'));
+      document.body.classList.remove('spotlight-active');
+
+      const subtitleBar = document.getElementById('subtitle-bar');
+      const subtitleText = document.getElementById('subtitle-text');
+
+      if (!stateName || !spotlightStates[stateName]) {
+        if (subtitleBar) subtitleBar.style.display = 'none';
+        return;
+      }
+
+      const st = spotlightStates[stateName];
+      currentSlide = st.slide;
+      updateSlide();
+
+      document.body.classList.add('spotlight-active');
+      if (subtitleBar) {
+        subtitleBar.style.display = 'flex';
+        subtitleText.textContent = st.text;
+      }
+
+      st.spotlight.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.classList.add('is-spotlight'));
+      });
+
+      st.dimmed.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.classList.add('is-dimmed'));
+      });
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoParam = urlParams.get('video');
+    if (videoParam) {
+      document.body.classList.add('video-mode');
+    }
+    const stateParam = urlParams.get('state');
+    const slideParam = parseInt(urlParams.get('slide'));
+    if (stateParam && spotlightStates[stateParam]) {
+      applySpotlightState(stateParam);
+    } else if (slideParam && slideParam >= 1 && slideParam <= totalSlides) {
+      currentSlide = slideParam;
+    }
+
+    function updateSlide() {
+      document.querySelectorAll('.slide').forEach((slide, index) => {
+        if (index + 1 === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+      document.getElementById('slide-indicator').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+      
+      const progressBar = document.getElementById('deck-progress');
+      if (progressBar) {
+        progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+      }
+
+      // Play audio if narration is enabled
+      const player = document.getElementById('slide-audio-player');
+      if (isPlayingAudio && audioFiles[currentSlide]) {
+        player.src = audioFiles[currentSlide];
+        player.play().catch(e => console.log('Autoplay deferred:', e));
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function startAutomatedDemo() {
+      currentSlide = 1;
+      isPlayingAudio = true;
+      const player = document.getElementById('slide-audio-player');
+      const icon = document.getElementById('audio-icon');
+      const text = document.getElementById('audio-text');
+      const demoBtn = document.getElementById('btn-auto-demo');
+      
+      icon.textContent = '🔊';
+      text.textContent = 'Voiceover Playing';
+      if (demoBtn) {
+        demoBtn.innerHTML = '<span>⏸</span> Playing Demo (2m 23s)';
+      }
+      
+      updateSlide();
+    }
+
+    function toggleAudioNarration() {
+      const player = document.getElementById('slide-audio-player');
+      const icon = document.getElementById('audio-icon');
+      const text = document.getElementById('audio-text');
+      const demoBtn = document.getElementById('btn-auto-demo');
+
+      if (isPlayingAudio) {
+        player.pause();
+        isPlayingAudio = false;
+        icon.textContent = '🔇';
+        text.textContent = 'Voiceover Paused';
+        if (demoBtn) demoBtn.innerHTML = '<span>🎬</span> Auto-Play Demo (2m 23s)';
+      } else {
+        isPlayingAudio = true;
+        icon.textContent = '🔊';
+        text.textContent = 'Voiceover Playing';
+        if (demoBtn) demoBtn.innerHTML = '<span>⏸</span> Playing Demo (2m 23s)';
+        if (audioFiles[currentSlide]) {
+          player.src = audioFiles[currentSlide];
+          player.play();
+        }
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // Auto advance when audio finishes on a slide
+    document.getElementById('slide-audio-player').addEventListener('ended', () => {
+      if (isPlayingAudio) {
+        if (currentSlide < totalSlides) {
+          setTimeout(nextSlide, 800);
+        } else {
+          // Finished last slide
+          isPlayingAudio = false;
+          const demoBtn = document.getElementById('btn-auto-demo');
+          if (demoBtn) demoBtn.innerHTML = '<span>🔄</span> Replay Demo';
+          const icon = document.getElementById('audio-icon');
+          const text = document.getElementById('audio-text');
+          if (icon) icon.textContent = '🔇';
+          if (text) text.textContent = 'Finished';
+        }
+      }
+    });
+
+    // Initialize slide state on load
+    updateSlide();
+  </script>
+</body>
+</html>

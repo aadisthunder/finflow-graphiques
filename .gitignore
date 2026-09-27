@@ -1,0 +1,35 @@
+# Environment & Secrets (Crucial: never expose API keys to public repository)
+.env
+.env.*
+!.env.example
+
+# macOS metadata & temporary office lock files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+~$*
+~$*.pptx
+~$*.docx
+~$*.xlsx
+
+# Testing, logs & MCP scratch directories
+.playwright-mcp/
+test-results/
+playwright-report/
+*.log
+*.tmp
+
+# Python & Node build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+node_modules/
+
+# Intermediate video render frames (can be regenerated with scripts/capture_spotlights.js)
+presentation/spotlight_frames/
